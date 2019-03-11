@@ -1,16 +1,16 @@
 buildscript {
-    ext {
-        kotlin_version = '1.3.20'
-        spotlessGradle = '3.17.0'
-    }
+    apply from: './dependencies.gradle'
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:3.3.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessGradle"
+        classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokkaGradle"
+        classpath "com.novoda:bintray-release:$versions.bintrayRelease"
     }
 }
 

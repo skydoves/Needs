@@ -34,8 +34,7 @@ Needs needs = new Needs.Builder(context)
       .setLifecycleOwner(lifecycleOwner)
       .build();
 ```
-
-### Create using Builder
+### Create using kotlin dsl
 This is how to create `Needs`'s instance using kotlin dsl.
 ```kotlin
 val needs = createNeeds(baseContext) {
