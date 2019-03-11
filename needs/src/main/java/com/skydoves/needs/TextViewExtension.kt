@@ -20,7 +20,7 @@ import android.widget.TextView
 
 /** applies text form attributes to a TextView instance. */
 @Suppress("unused")
-fun TextView.applyTextForm(textForm: TextForm) {
+internal fun TextView.applyTextForm(textForm: TextForm) {
   textSize = textForm.textSize.toFloat()
   setTextColor(textForm.textColor)
   setTypeface(typeface, textForm.textStyle)

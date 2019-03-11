@@ -23,7 +23,7 @@ import android.view.View
 import android.view.ViewAnimationUtils
 
 /** makes visible or invisible a View align the value parameter. */
-fun View.visible(value: Boolean) {
+internal fun View.visible(value: Boolean) {
   if (value) {
     this.visibility = View.VISIBLE
   } else {
@@ -32,7 +32,7 @@ fun View.visible(value: Boolean) {
 }
 
 /** shows circular revealed animation to a view. */
-fun View.circularRevealed() {
+internal fun View.circularRevealed() {
   this.addOnLayoutChangeListener(
       object : View.OnLayoutChangeListener {
         override fun onLayoutChange(

@@ -27,8 +27,8 @@ fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
     TextForm.Builder(context).apply(block).build()
 
 /**
- * TextFrom is a gathering class what has some attributes
- * for applying TextView attributes easily.
+ * TextFrom is an attribute class what has some attributes about TextView
+ * for customizing popup texts easily.
  */
 class TextForm(builder: Builder) {
 

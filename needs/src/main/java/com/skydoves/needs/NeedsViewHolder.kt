@@ -21,7 +21,7 @@ import com.skydoves.baserecyclerviewadapter.BaseViewHolder
 import kotlinx.android.synthetic.main.item_needs.view.*
 
 /** NeedsViewHolder is an implementation of [BaseViewHolder] that has [NeedsItem] as data. */
-class NeedsViewHolder(
+internal class NeedsViewHolder(
   view: View,
   private val needsItemTheme: NeedsItemTheme? = null
 )

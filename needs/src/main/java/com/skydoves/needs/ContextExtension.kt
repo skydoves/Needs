@@ -21,7 +21,7 @@ import android.graphics.Point
 import android.view.WindowManager
 
 /** gets display size as a point. */
-fun Context.displaySize(): Point {
+internal fun Context.displaySize(): Point {
   val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
   val display = wm.defaultDisplay
   val size = Point()
@@ -30,7 +30,7 @@ fun Context.displaySize(): Point {
 }
 
 /** dp size to px size. */
-fun Context.dp2Px(dp: Int): Int {
+internal fun Context.dp2Px(dp: Int): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
 }

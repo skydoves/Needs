@@ -22,7 +22,7 @@ import com.skydoves.baserecyclerviewadapter.SectionRow
 
 /** NeedsAdapter is an implementation of [BaseAdapter] that has [NeedsItem] as items. */
 @Suppress("unused")
-class NeedsAdapter(
+internal class NeedsAdapter(
   private val needsItemTheme: NeedsItemTheme? = null
 ) : BaseAdapter() {
 
