@@ -8,6 +8,9 @@ Needs can be fully customized and showing with animations. <br>
 ![img1](https://user-images.githubusercontent.com/24237865/54131159-17941380-4455-11e9-98c3-4de8889f16bc.png)
 
 ## Download
+[![Download](https://api.bintray.com/packages/devmagician/maven/needs/images/download.svg)](https://bintray.com/devmagician/maven/needs/_latestVersion)
+[![JitPack](https://jitpack.io/v/skydoves/Needs.svg)](https://jitpack.io/#skydoves/Needs)
+
 ### Gradle
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
