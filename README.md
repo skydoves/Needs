@@ -162,8 +162,18 @@ val itemTheme = needsItemTheme(baseContext) {
 ### NeedsAnimation
 NeedsAnimation implements showing and dismissing popup with animations.
 
+ELASTIC | CIRCULAR
+------------ | -------------
+![elastic](https://user-images.githubusercontent.com/24237865/54141413-f6d5b900-4468-11e9-8635-80290190b1cd.gif) | ![circular](https://user-images.githubusercontent.com/24237865/54141418-f89f7c80-4468-11e9-9550-7fa64b809a76.gif)
+
+NONE | FADE
+------------ | -------------
+![none](https://user-images.githubusercontent.com/24237865/54141417-f806e600-4468-11e9-9eed-0c303a4d4b59.gif) | ![fade](https://user-images.githubusercontent.com/24237865/54141415-f806e600-4468-11e9-9905-9c8ee222911a.gif)
+
+
 ```java
 builder.setNeedsAnimation(NeedsAnimation.FADE)
+builder.setNeedsAnimation(NeedsAnimation.NONE)
 builder.setNeedsAnimation(NeedsAnimation.ELASTIC)
 builder.setNeedsAnimation(NeedsAnimation.CIRCULAR)
 ```
