@@ -20,7 +20,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 @Suppress("PrivatePropertyName")
-class NeedsPreferenceManager(context: Context, times: Int = 1) {
+class NeedsPreferenceManager(context: Context) {
 
   private val SHOWED_UP = "SHOWED_UP"
 
@@ -34,14 +34,24 @@ class NeedsPreferenceManager(context: Context, times: Int = 1) {
     return needsPreferenceManager
   }
 
+  /** should show or not the popup. */
+  fun shouldShowUP(name: String, times: Int): Boolean {
+    return getTimes(name) < times
+  }
+
   /** gets show-up times from the preference. */
   fun getTimes(name: String): Int {
     return sharedPreferenceManager.getInt(SHOWED_UP + name, 0)
   }
 
-  /** puts show-up times to the preference.  */
-  fun putTimes(name: String, times: Int): Int {
-    return sharedPreferenceManager.getInt(SHOWED_UP + name, times)
+  /** puts show-up times to the preference. */
+  fun putTimes(name: String, times: Int) {
+    sharedPreferenceManager.edit().putInt(SHOWED_UP + name, times).apply()
+  }
+
+  /** puts a incremented show-up times to the preference. */
+  fun putIncrementedTimes(name: String) {
+    sharedPreferenceManager.edit().putInt(SHOWED_UP + name, getTimes(name) + 1).apply()
   }
 
   companion object {

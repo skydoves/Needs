@@ -60,6 +60,9 @@ class Needs(
   private var onConfirmListener: OnConfirmListener? = null
   var isShowing = false
     private set
+  private var showTimes: Int = 1
+  private var preferenceName: String? = null
+  private val needsPreferenceManager = NeedsPreferenceManager(context).getInstance()
 
   init {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -95,6 +98,7 @@ class Needs(
     initializeDivider()
     initializeBackground()
     initializeTheme()
+    initializePreferences()
 
     bodyWindow.width = context.displaySize().x - context.dp2Px(builder.padding) * 2
   }
@@ -147,6 +151,11 @@ class Needs(
     }
   }
 
+  private fun initializePreferences() {
+    preferenceName = builder.preferenceName
+    showTimes = builder.showTimes
+  }
+
   private fun applyWindowAnimation() {
     when (builder.needsAnimation) {
       NeedsAnimation.ELASTIC -> bodyWindow.animationStyle = R.style.Elastic
@@ -169,6 +178,12 @@ class Needs(
   /** shows the popup menu to the center. */
   fun show(view: View) {
     if (!isShowing) {
+      preferenceName?.let {
+        if (needsPreferenceManager.shouldShowUP(it, showTimes)) {
+          needsPreferenceManager.putIncrementedTimes(it)
+        } else return
+      }
+
       applyWindowAnimation()
       backgroundWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
       bodyWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
@@ -242,6 +257,10 @@ class Needs(
     var needsItemTheme: NeedsItemTheme? = null
     @JvmField
     var needsAnimation: NeedsAnimation = NeedsAnimation.NONE
+    @JvmField
+    var preferenceName: String? = null
+    @JvmField
+    var showTimes: Int = 1
 
     fun setTitleIcon(@DrawableRes drawable: Drawable): Builder = apply { this.titleIcon = drawable }
     fun setTitle(value: String): Builder = apply { this.title = value }
@@ -266,6 +285,8 @@ class Needs(
     fun setNeedsTheme(value: NeedsTheme): Builder = apply { this.needsTheme = value }
     fun setNeedsItemTheme(value: NeedsItemTheme): Builder = apply { this.needsItemTheme = value }
     fun setNeedsAnimation(value: NeedsAnimation): Builder = apply { this.needsAnimation = value }
+    fun setPreferenceName(value: String): Builder = apply { this.preferenceName = value }
+    fun setShowTime(value: Int): Builder = apply { this.showTimes = value }
     fun build(): Needs {
       return Needs(context, this)
     }
