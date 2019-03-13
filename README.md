@@ -6,8 +6,8 @@
 An easy way to implement modern permission instructions popup. <br>
 Needs can be fully customized and showing with animations. <br>
 
-![img0](https://user-images.githubusercontent.com/24237865/54131158-17941380-4455-11e9-8a5a-3bcffce8632c.png)
-![img1](https://user-images.githubusercontent.com/24237865/54131159-17941380-4455-11e9-98c3-4de8889f16bc.png)
+![img0](https://user-images.githubusercontent.com/24237865/54251761-9ab78580-458b-11e9-9db0-7bd6684ce0f2.png)
+![img1](https://user-images.githubusercontent.com/24237865/54251764-9ab78580-458b-11e9-86eb-794861fb9f75.png)
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/needs/images/download.svg)](https://bintray.com/devmagician/maven/needs/_latestVersion)
@@ -30,9 +30,9 @@ Needs needs = new Needs.Builder(context)
       .setTitle("Permission instructions for using this Android app.")
       .addNeedsItem(new NeedsItem(null, "· SD Card", "(Required)", "Access photos, media, and files on device."))
       .addNeedsItem(new NeedsItem(null, "· Location", "(Required)", "Access this device's location."))
-      .addNeedsItem(new NeedsItem(null, "· Camera", "(Selection)", "Take pictures and record video."))
-      .addNeedsItem(new NeedsItem(null, "· Contact", "(Selection)", "Access this device's contacts."))
-      .addNeedsItem(new NeedsItem(null, "· SMS", "(Selection)", " end and view SMS messages."))
+      .addNeedsItem(new NeedsItem(null, "· Camera", "(Optional)", "Take pictures and record video."))
+      .addNeedsItem(new NeedsItem(null, "· Contact", "(Optional)", "Access this device's contacts."))
+      .addNeedsItem(new NeedsItem(null, "· SMS", "(Optional)", " end and view SMS messages."))
       .setDescription("The above accesses are used to better serve you.")
       .setConfirm("Confirm")
       .setBackgroundAlpha(0.6f)
@@ -48,9 +48,9 @@ val needs = createNeeds(baseContext) {
       titleTextForm = titleForm
       addNeedsItem(NeedsItem(drawable_sd, "SD Card", "(Required)", "Access photos, media, and files on device."))
       addNeedsItem(NeedsItem(drawable_location, "Location", "(Required)", "Access this device's location."))
-      addNeedsItem(NeedsItem(drawable_camera, "Camera", "(Selection)", "Take pictures and record video."))
-      addNeedsItem(NeedsItem(drawable_contact, "Contact", "(Selection)", "Access this device's contacts."))
-      addNeedsItem(NeedsItem(drawable_sms, "SMS", "(Selection)", "Send and view SMS messages."))
+      addNeedsItem(NeedsItem(drawable_camera, "Camera", "(Optional)", "Take pictures and record video."))
+      addNeedsItem(NeedsItem(drawable_contact, "Contact", "(Optional)", "Access this device's contacts."))
+      addNeedsItem(NeedsItem(drawable_sms, "SMS", "(Optional)", "Send and view SMS messages."))
       description = "The above accesses are used to better serve you."
       confirm = "Confirm"
       backgroundAlpha = 0.6f

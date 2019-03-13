@@ -38,9 +38,9 @@ object NeedsUtils {
       .setLifecycleOwner(lifecycleOwner)
       .addNeedsItem(NeedsItem(null, "· SD Card", "(Required)", "   Access photos, media, and files on device."))
       .addNeedsItem(NeedsItem(null, "· Location", "(Required)", "   Access this device's location."))
-      .addNeedsItem(NeedsItem(null, "· Camera", "(Selection)", "   Take pictures and record video."))
-      .addNeedsItem(NeedsItem(null, "· Contact", "(Selection)", "   Access this device's contacts."))
-      .addNeedsItem(NeedsItem(null, "· SMS", "(Selection)", "   Send and view SMS messages."))
+      .addNeedsItem(NeedsItem(null, "· Camera", "(Optional)", "   Take pictures and record video."))
+      .addNeedsItem(NeedsItem(null, "· Contact", "(Optional)", "   Access this device's contacts."))
+      .addNeedsItem(NeedsItem(null, "· SMS", "(Optional)", "   Send and view SMS messages."))
       .build()
   }
 
@@ -84,12 +84,12 @@ object NeedsUtils {
       lifecycleOwner = lifecycle
       needsTheme = theme
       needsItemTheme = itemTheme
-      needsAnimation = NeedsAnimation.CIRCULAR
+      needsAnimation = NeedsAnimation.NONE
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_sd_storage_white_24dp), "SD Card", "(Required)", "Access photos, media, and files on device."))
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_location_on_white_24dp), "Location", "(Required)", "Access this device's location."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_camera_alt_white_24dp), "Camera", "(Selection)", "Take pictures and record video."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_contacts_white_24dp), "Contact", "(Selection)", "Access this device's contacts."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_sms_white_24dp), "SMS", "(Selection)", "Send and view SMS messages."))
+      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_camera_alt_white_24dp), "Camera", "(Optional)", "Take pictures and record video."))
+      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_contacts_white_24dp), "Contact", "(Optional)", "Access this device's contacts."))
+      addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_sms_white_24dp), "SMS", "(Optional)", "Send and view SMS messages."))
     }
   }
 }
