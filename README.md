@@ -17,7 +17,7 @@ Needs can be fully customized and showing with animations. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.0"
+    implementation "com.github.skydoves:needs:1.0.1"
 }
 ```
 
@@ -178,6 +178,16 @@ builder.setNeedsAnimation(NeedsAnimation.ELASTIC)
 builder.setNeedsAnimation(NeedsAnimation.CIRCULAR)
 ```
 
+## Avoid Memory leak
+Dialog, PopupWindow and etc.. have memory leak issue if not dismissed before activity or fragment are destroyed.<br>
+But Lifecycles are now integrated with the Support Library since Architecture Components 1.0 Stable released.<br>
+So we can solve the memory leak issue so easily.<br>
+
+Just use `setLifecycleOwner` method. Then `dismiss` method will be called automatically before activity or fragment would be destroyed.
+```java
+.setLifecycleOwner(lifecycleOwner)
+```
+
 ## Needs builder methods
 ```java
 .setTitleIcon(@DrawableRes drawable: Drawable)
@@ -198,6 +208,7 @@ builder.setNeedsAnimation(NeedsAnimation.CIRCULAR)
 .setBackgroundAlpha(value: Float)
 .setDividerColor(@ColorInt value: Int)
 .setDividerVisible(value: Boolean)
+.setDividerHeight(value: Float)
 .setOnConfirmListener(value: OnConfirmListener)
 .setLifecycleOwner(value: LifecycleOwner)
 .setNeedsTheme(value: NeedsTheme)
