@@ -42,7 +42,7 @@
     <FrameLayout
         android:id="@+id/divider_top"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.8dp"
         android:background="@color/divider"
         android:layout_marginTop="20dp"/>
 
@@ -57,7 +57,7 @@
     <FrameLayout
         android:id="@+id/divider_bottom"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.8dp"
         android:background="@color/divider"/>
 
     <TextView

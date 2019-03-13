@@ -132,8 +132,10 @@ class Needs(
   private fun initializeDivider() {
     bodyView.divider_top.setBackgroundColor(builder.dividerColor)
     bodyView.divider_top.visible(builder.dividerVisible)
+    bodyView.divider_top.layoutParams.height = context.dp2Px(builder.dividerHeight)
     bodyView.divider_bottom.setBackgroundColor(builder.dividerColor)
     bodyView.divider_bottom.visible(builder.dividerVisible)
+    bodyView.divider_bottom.layoutParams.height = context.dp2Px(builder.dividerHeight)
   }
 
   private fun initializeBackground() {
@@ -241,6 +243,8 @@ class Needs(
     var dividerColor: Int = ContextCompat.getColor(context, R.color.divider)
     @JvmField
     var dividerVisible: Boolean = true
+    @JvmField
+    var dividerHeight: Float = 0.8f
     @DrawableRes
     @JvmField
     var background: Drawable? = null
@@ -280,6 +284,7 @@ class Needs(
     fun setBackgroundAlpha(value: Float): Builder = apply { this.backgroundAlpha = value }
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
+    fun setDividerHeight(value: Float): Builder = apply { this.dividerHeight = value }
     fun setOnConfirmListener(value: OnConfirmListener): Builder = apply { this.onConfirmListener = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
     fun setNeedsTheme(value: NeedsTheme): Builder = apply { this.needsTheme = value }

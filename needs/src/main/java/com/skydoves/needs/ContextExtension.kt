@@ -34,3 +34,9 @@ internal fun Context.dp2Px(dp: Int): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
 }
+
+/** dp size to px size. */
+internal fun Context.dp2Px(dp: Float): Int {
+  val scale = resources.displayMetrics.density
+  return (dp * scale).toInt()
+}

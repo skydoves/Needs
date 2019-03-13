@@ -85,6 +85,7 @@ object NeedsUtils {
       needsTheme = theme
       needsItemTheme = itemTheme
       needsAnimation = NeedsAnimation.NONE
+      dividerHeight = 0.6f
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_sd_storage_white_24dp), "SD Card", "(Required)", "Access photos, media, and files on device."))
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_location_on_white_24dp), "Location", "(Required)", "Access this device's location."))
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_camera_alt_white_24dp), "Camera", "(Optional)", "Take pictures and record video."))
