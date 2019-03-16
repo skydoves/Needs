@@ -1,7 +1,8 @@
 # Needs
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) 
-[![Build Status](https://travis-ci.org/skydoves/Needs.svg?branch=master)](https://travis-ci.org/skydoves/Needs) 
+[![Build Status](https://travis-ci.org/skydoves/Needs.svg?branch=master)](https://travis-ci.org/skydoves/Needs)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Needs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7569)
 [![Javadoc](https://img.shields.io/badge/Javadoc-Needs-yellow.svg)](https://skydoves.github.io/libraries/needs/javadoc/needs/com.skydoves.needs/index.html)<br>
 An easy way to implement modern permission instructions popup. <br>
 Needs can be fully customized and showing with animations. <br>
