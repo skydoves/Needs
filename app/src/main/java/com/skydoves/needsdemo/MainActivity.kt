@@ -31,11 +31,14 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
+    this.needs = NeedsUtils.getNeedsStyle1(this, this)
+
     button0.setOnClickListener {
       needs = NeedsUtils.getNeedsStyle0(this, this)
       setOnConfirmListener()
       needs.show(main)
     }
+
     button1.setOnClickListener {
       needs = NeedsUtils.getNeedsStyle1(this, this)
       setOnConfirmListener()

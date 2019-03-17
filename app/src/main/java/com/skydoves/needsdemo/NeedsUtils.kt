@@ -36,6 +36,7 @@ object NeedsUtils {
       .setConfirm("Confirm")
       .setBackgroundAlpha(0.6f)
       .setLifecycleOwner(lifecycleOwner)
+      .setNeedsAnimation(NeedsAnimation.FADE)
       .addNeedsItem(NeedsItem(null, "· SD Card", "(Required)", "   Access photos, media, and files on device."))
       .addNeedsItem(NeedsItem(null, "· Location", "(Required)", "   Access this device's location."))
       .addNeedsItem(NeedsItem(null, "· Camera", "(Optional)", "   Take pictures and record video."))
@@ -84,7 +85,7 @@ object NeedsUtils {
       lifecycleOwner = lifecycle
       needsTheme = theme
       needsItemTheme = itemTheme
-      needsAnimation = NeedsAnimation.NONE
+      needsAnimation = NeedsAnimation.CIRCULAR
       dividerHeight = 0.6f
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_sd_storage_white_24dp), "SD Card", "(Required)", "Access photos, media, and files on device."))
       addNeedsItem(NeedsItem(ContextCompat.getDrawable(baseContext, R.drawable.ic_location_on_white_24dp), "Location", "(Required)", "Access this device's location."))
