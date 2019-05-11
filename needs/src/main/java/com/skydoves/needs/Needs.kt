@@ -90,6 +90,7 @@ class Needs(
     bodyView.description.text = builder.description
     bodyView.confirm.text = builder.confirm
     bodyView.confirm.setBackgroundColor(builder.confirmBackgroundColor)
+    bodyView.confirm_wrapper.visible(builder.confirmVisible)
     builder.onConfirmListener?.let { setOnConfirmListener(it) }
     builder.lifecycleOwner?.lifecycle?.addObserver(this)
 
@@ -231,6 +232,8 @@ class Needs(
     @JvmField
     var onConfirmListener: OnConfirmListener? = null
     @JvmField
+    var confirmVisible: Boolean = true
+    @JvmField
     var padding: Int = 20
     @JvmField
     var listAdapter: RecyclerView.Adapter<*>? = null
@@ -274,6 +277,7 @@ class Needs(
     fun setConfirmBackgroundColor(@ColorInt value: Int): Builder = apply { this.confirmBackgroundColor = value }
     fun setConfirm(value: String): Builder = apply { this.confirm = value }
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
+    fun setConfirmVisible(value: Boolean): Builder = apply { this.confirmVisible = value }
     fun setListAdapter(value: RecyclerView.Adapter<*>): Builder = apply { this.listAdapter = value }
     fun setListHeight(value: Int): Builder = apply { this.listHeight = value }
     fun setPadding(value: Int): Builder = apply { this.padding = value }
