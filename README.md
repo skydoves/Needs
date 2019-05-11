@@ -19,7 +19,7 @@ Needs can be fully customized and showing with animations. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.2"
+    implementation "com.github.skydoves:needs:1.0.3"
 }
 ```
 
@@ -207,6 +207,7 @@ Just use `setLifecycleOwner` method. Then `dismiss` method will be called automa
 .setConfirmBackgroundColor(@ColorInt value: Int)
 .setConfirm(value: String)
 .setConfirmTextForm(value: TextForm)
+.setConfirmVisible(value: Boolean)
 .setListAdapter(value: RecyclerView.Adapter<*>)
 .setListHeight(value: Int)
 .setPadding(value: Int)
