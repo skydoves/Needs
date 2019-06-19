@@ -29,7 +29,6 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.annotation.ColorInt
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -42,7 +41,7 @@ import kotlinx.android.synthetic.main.layout_body.view.*
 
 /** creates an instance of [Needs] by [Needs.Builder] using kotlin dsl. */
 fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
-    Needs.Builder(context).apply(block).build()
+  Needs.Builder(context).apply(block).build()
 
 /** Needs implements showing and dismissing popup with background, animations. */
 @Suppress("MemberVisibilityCanBePrivate")
@@ -68,31 +67,36 @@ class Needs(
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     this.backgroundView = inflater.inflate(R.layout.layout_background, null)
     this.backgroundWindow = PopupWindow(
-        backgroundView,
-        FrameLayout.LayoutParams.MATCH_PARENT,
-        FrameLayout.LayoutParams.MATCH_PARENT
+      backgroundView,
+      FrameLayout.LayoutParams.MATCH_PARENT,
+      FrameLayout.LayoutParams.MATCH_PARENT
     )
     this.bodyView = inflater.inflate(R.layout.layout_body, null)
     this.bodyWindow = PopupWindow(
-        bodyView,
-        context.displaySize().x - context.dp2Px(20) * 2,
-        LinearLayout.LayoutParams.WRAP_CONTENT
+      bodyView,
+      context.displaySize().x - context.dp2Px(20) * 2,
+      LinearLayout.LayoutParams.WRAP_CONTENT
     )
     createByBuilder()
   }
 
   private fun createByBuilder() {
-    builder.titleIcon?.let {
-      bodyView.title_icon.setImageDrawable(it)
-      bodyView.title_icon.visible(true)
+    with(bodyView) {
+      title.text = builder.title
+      description.text = builder.description
+      confirm.text = builder.confirm
+      confirm.setBackgroundColor(builder.confirmBackgroundColor)
+      confirm_wrapper.visible(builder.confirmVisible)
     }
-    bodyView.title.text = builder.title
-    bodyView.description.text = builder.description
-    bodyView.confirm.text = builder.confirm
-    bodyView.confirm.setBackgroundColor(builder.confirmBackgroundColor)
-    bodyView.confirm_wrapper.visible(builder.confirmVisible)
-    builder.onConfirmListener?.let { setOnConfirmListener(it) }
-    builder.lifecycleOwner?.lifecycle?.addObserver(this)
+
+    with(builder) {
+      titleIcon?.let {
+        bodyView.title_icon.setImageDrawable(it)
+        bodyView.title_icon.visible(true)
+      }
+      onConfirmListener?.let { setOnConfirmListener(it) }
+      lifecycleOwner?.lifecycle?.addObserver(this@Needs)
+    }
 
     initializeTextForm()
     initializeRecyclerView()
@@ -105,14 +109,16 @@ class Needs(
   }
 
   private fun initializeTextForm() {
-    builder.titleTextForm?.let {
-      bodyView.title.applyTextForm(it)
-    }
-    builder.descriptionTextForm?.let {
-      bodyView.description.applyTextForm(it)
-    }
-    builder.confirmTextForm?.let {
-      bodyView.confirm.applyTextForm(it)
+    with(builder) {
+      titleTextForm?.let {
+        bodyView.title.applyTextForm(it)
+      }
+      descriptionTextForm?.let {
+        bodyView.description.applyTextForm(it)
+      }
+      confirmTextForm?.let {
+        bodyView.confirm.applyTextForm(it)
+      }
     }
   }
 
@@ -131,12 +137,14 @@ class Needs(
   }
 
   private fun initializeDivider() {
-    bodyView.divider_top.setBackgroundColor(builder.dividerColor)
-    bodyView.divider_top.visible(builder.dividerVisible)
-    bodyView.divider_top.layoutParams.height = context.dp2Px(builder.dividerHeight)
-    bodyView.divider_bottom.setBackgroundColor(builder.dividerColor)
-    bodyView.divider_bottom.visible(builder.dividerVisible)
-    bodyView.divider_bottom.layoutParams.height = context.dp2Px(builder.dividerHeight)
+    with(bodyView) {
+      divider_top.setBackgroundColor(builder.dividerColor)
+      divider_top.visible(builder.dividerVisible)
+      divider_top.layoutParams.height = context.dp2Px(builder.dividerHeight)
+      divider_bottom.setBackgroundColor(builder.dividerColor)
+      divider_bottom.visible(builder.dividerVisible)
+      divider_bottom.layoutParams.height = context.dp2Px(builder.dividerHeight)
+    }
   }
 
   private fun initializeBackground() {
@@ -147,10 +155,12 @@ class Needs(
 
   private fun initializeTheme() {
     builder.needsTheme?.let {
-      bodyView.setBackgroundColor(it.backgroundColor)
-      bodyView.title.applyTextForm(it.titleTextForm)
-      bodyView.description.applyTextForm(it.descriptionTextForm)
-      bodyView.confirm.applyTextForm(it.confirmTextForm)
+      with(bodyView) {
+        setBackgroundColor(it.backgroundColor)
+        title.applyTextForm(it.titleTextForm)
+        description.applyTextForm(it.descriptionTextForm)
+        confirm.applyTextForm(it.confirmTextForm)
+      }
     }
   }
 
@@ -211,7 +221,6 @@ class Needs(
 
   /** Builder class for creating [Needs]. */
   class Builder(private val context: Context) {
-    @DrawableRes
     @JvmField
     var titleIcon: Drawable? = null
     @JvmField
@@ -248,7 +257,6 @@ class Needs(
     var dividerVisible: Boolean = true
     @JvmField
     var dividerHeight: Float = 0.8f
-    @DrawableRes
     @JvmField
     var background: Drawable? = null
     @ColorInt
@@ -269,7 +277,7 @@ class Needs(
     @JvmField
     var showTimes: Int = 1
 
-    fun setTitleIcon(@DrawableRes drawable: Drawable): Builder = apply { this.titleIcon = drawable }
+    fun setTitleIcon(drawable: Drawable): Builder = apply { this.titleIcon = drawable }
     fun setTitle(value: String): Builder = apply { this.title = value }
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
     fun setDescription(value: String): Builder = apply { this.description = value }
@@ -283,7 +291,7 @@ class Needs(
     fun setPadding(value: Int): Builder = apply { this.padding = value }
     fun addNeedsItem(value: NeedsItem): Builder = apply { this.needsList.add(value) }
     fun addNeedsItemList(value: List<NeedsItem>): Builder = apply { this.needsList.addAll(value) }
-    fun setBackground(@DrawableRes value: Drawable): Builder = apply { this.background = value }
+    fun setBackground(value: Drawable): Builder = apply { this.background = value }
     fun setBackgroundColor(@ColorInt value: Int): Builder = apply { this.backgroundColor = value }
     fun setBackgroundAlpha(value: Float): Builder = apply { this.backgroundAlpha = value }
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
