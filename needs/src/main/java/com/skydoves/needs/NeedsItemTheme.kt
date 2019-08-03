@@ -22,6 +22,9 @@ import android.content.Context
 import android.graphics.Typeface
 import androidx.core.content.ContextCompat
 
+@DslMarker
+annotation class NeedsItemThemeDsl
+
 /** creates an instance of [NeedsItemTheme] by [NeedsItemTheme.Builder] using kotlin dsl. */
 fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): NeedsItemTheme =
   NeedsItemTheme.Builder(context).apply(block).build()
@@ -35,6 +38,7 @@ class NeedsItemTheme(builder: Builder) {
   val descriptionTextForm = builder.descriptionTextForm
 
   /** Builder class for creating [NeedsItemTheme]. */
+  @NeedsItemThemeDsl
   class Builder(context: Context) {
     @JvmField
     var backgroundColor = ContextCompat.getColor(context, R.color.white)

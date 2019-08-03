@@ -22,6 +22,9 @@ import android.content.Context
 import android.graphics.Typeface
 import androidx.core.content.ContextCompat
 
+@DslMarker
+annotation class TextFormDsl
+
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder(context).apply(block).build()
@@ -30,6 +33,7 @@ fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
  * TextFrom is an attribute class what has some attributes about TextView
  * for customizing popup texts easily.
  */
+@TextFormDsl
 class TextForm(builder: Builder) {
 
   val textSize = builder.textSize
