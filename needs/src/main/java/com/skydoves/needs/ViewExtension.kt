@@ -21,6 +21,7 @@ package com.skydoves.needs
 import android.os.Build
 import android.view.View
 import android.view.ViewAnimationUtils
+import kotlin.math.max
 
 /** makes visible or invisible a View align the value parameter. */
 internal fun View.visible(value: Boolean) {
@@ -34,29 +35,29 @@ internal fun View.visible(value: Boolean) {
 /** shows circular revealed animation to a view. */
 internal fun View.circularRevealed() {
   this.addOnLayoutChangeListener(
-      object : View.OnLayoutChangeListener {
-        override fun onLayoutChange(
-          view: View,
-          left: Int,
-          top: Int,
-          right: Int,
-          bottom: Int,
-          oldLeft: Int,
-          oldTop: Int,
-          oldRight: Int,
-          oldBottom: Int
-        ) {
-          view.removeOnLayoutChangeListener(this)
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val animator = ViewAnimationUtils.createCircularReveal(
-                view,
-                (view.left + view.right) / 2,
-                (view.top + view.bottom) / 2,
-                0f,
-                Math.max(view.width, view.height).toFloat())
-            animator.duration = 500
-            animator.start()
-          }
+    object : View.OnLayoutChangeListener {
+      override fun onLayoutChange(
+        view: View,
+        left: Int,
+        top: Int,
+        right: Int,
+        bottom: Int,
+        oldLeft: Int,
+        oldTop: Int,
+        oldRight: Int,
+        oldBottom: Int
+      ) {
+        view.removeOnLayoutChangeListener(this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          val animator = ViewAnimationUtils.createCircularReveal(
+            view,
+            (view.left + view.right) / 2,
+            (view.top + view.bottom) / 2,
+            0f,
+            max(view.width, view.height).toFloat())
+          animator.duration = 500
+          animator.start()
         }
-      })
+      }
+    })
 }

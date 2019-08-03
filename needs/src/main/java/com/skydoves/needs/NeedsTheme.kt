@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat
 
 /** creates an instance of [NeedsTheme] by [NeedsTheme.Builder] using kotlin dsl. */
 fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsTheme =
-    NeedsTheme.Builder(context).apply(block).build()
+  NeedsTheme.Builder(context).apply(block).build()
 
 /** NeedsTheme is an attribute class for changing [Needs] popup theme easily. */
 class NeedsTheme(builder: Builder) {

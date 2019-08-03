@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat
 
 /** creates an instance of [NeedsItemTheme] by [NeedsItemTheme.Builder] using kotlin dsl. */
 fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): NeedsItemTheme =
-    NeedsItemTheme.Builder(context).apply(block).build()
+  NeedsItemTheme.Builder(context).apply(block).build()
 
 /** NeedsItemTheme is an attribute class for changing item theme easily. */
 class NeedsItemTheme(builder: Builder) {

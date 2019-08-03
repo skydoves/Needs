@@ -24,8 +24,7 @@ import kotlinx.android.synthetic.main.item_needs.view.*
 internal class NeedsViewHolder(
   view: View,
   private val needsItemTheme: NeedsItemTheme? = null
-)
-  : BaseViewHolder(view) {
+) : BaseViewHolder(view) {
 
   private lateinit var needsItem: NeedsItem
 

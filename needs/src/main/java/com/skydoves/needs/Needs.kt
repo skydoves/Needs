@@ -39,7 +39,11 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_background.view.*
 import kotlinx.android.synthetic.main.layout_body.view.*
 
+@DslMarker
+annotation class NeedsDsl
+
 /** creates an instance of [Needs] by [Needs.Builder] using kotlin dsl. */
+@NeedsDsl
 fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
   Needs.Builder(context).apply(block).build()
 
@@ -220,6 +224,7 @@ class Needs(
   }
 
   /** Builder class for creating [Needs]. */
+  @NeedsDsl
   class Builder(private val context: Context) {
     @JvmField
     var titleIcon: Drawable? = null

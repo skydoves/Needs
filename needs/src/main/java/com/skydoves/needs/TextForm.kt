@@ -24,7 +24,7 @@ import androidx.core.content.ContextCompat
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
-    TextForm.Builder(context).apply(block).build()
+  TextForm.Builder(context).apply(block).build()
 
 /**
  * TextFrom is an attribute class what has some attributes about TextView
