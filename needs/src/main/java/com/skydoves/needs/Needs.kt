@@ -192,6 +192,10 @@ class Needs(
     bodyView.confirm.setOnClickListener { onConfirmListener.onConfirm() }
   }
 
+  fun setOnConfirmListener(block: () -> Unit) {
+    bodyView.confirm.setOnClickListener { block() }
+  }
+
   /** shows the popup menu to the center. */
   fun show(view: View) {
     if (!isShowing) {
@@ -224,6 +228,7 @@ class Needs(
   }
 
   /** Builder class for creating [Needs]. */
+  @Suppress("NOTHING_TO_INLINE")
   @NeedsDsl
   class Builder(private val context: Context) {
     @JvmField
@@ -302,15 +307,21 @@ class Needs(
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
     fun setDividerHeight(value: Float): Builder = apply { this.dividerHeight = value }
-    fun setOnConfirmListener(value: OnConfirmListener): Builder = apply { this.onConfirmListener = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
     fun setNeedsTheme(value: NeedsTheme): Builder = apply { this.needsTheme = value }
     fun setNeedsItemTheme(value: NeedsItemTheme): Builder = apply { this.needsItemTheme = value }
     fun setNeedsAnimation(value: NeedsAnimation): Builder = apply { this.needsAnimation = value }
     fun setPreferenceName(value: String): Builder = apply { this.preferenceName = value }
     fun setShowTime(value: Int): Builder = apply { this.showTimes = value }
-    fun build(): Needs {
-      return Needs(context, this)
+    fun setOnConfirmListener(value: OnConfirmListener): Builder = apply { this.onConfirmListener = value }
+    inline fun setOnConfirmListener(noinline block: () -> Unit): Builder = apply {
+      this.onConfirmListener = object : OnConfirmListener {
+        override fun onConfirm() {
+          block()
+        }
+      }
     }
+
+    fun build(): Needs = Needs(context, this)
   }
 }
