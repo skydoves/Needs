@@ -20,44 +20,49 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.needs.Needs
-import com.skydoves.needs.OnConfirmListener
+import com.skydoves.needs.needs
+import com.skydoves.needs.showNeeds
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var needs: Needs
+  private lateinit var needs0: Needs
+  private val needs1 by needs {
+    NeedsUtils.getNeedsStyle1(this, this)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    this.needs = NeedsUtils.getNeedsStyle1(this, this)
+    needs1.setOnConfirmListener { needs1.dismiss() }
+    needs1.showNeeds(button0)
+
+    this.needs0 = NeedsUtils.getNeedsStyle1(this, this)
 
     button0.setOnClickListener {
-      needs = NeedsUtils.getNeedsStyle0(this, this)
+      needs0 = NeedsUtils.getNeedsStyle0(this, this)
       setOnConfirmListener()
-      needs.show(main)
+      needs0.show(main)
     }
 
     button1.setOnClickListener {
-      needs = NeedsUtils.getNeedsStyle1(this, this)
+      needs0 = NeedsUtils.getNeedsStyle1(this, this)
       setOnConfirmListener()
-      needs.show(main)
+      needs0.show(main)
     }
   }
 
   private fun setOnConfirmListener() {
-    needs.setOnConfirmListener(object : OnConfirmListener {
-      override fun onConfirm() {
-        Toast.makeText(baseContext, "Confirmed!", Toast.LENGTH_SHORT).show()
-        needs.dismiss()
-      }
-    })
+    needs0.setOnConfirmListener {
+      Toast.makeText(baseContext, "Confirmed!", Toast.LENGTH_SHORT).show()
+      needs0.dismiss()
+    }
   }
 
   override fun onBackPressed() {
-    if (needs.isShowing) {
-      needs.dismiss()
+    if (needs0.isShowing) {
+      needs0.dismiss()
     } else {
       super.onBackPressed()
     }
