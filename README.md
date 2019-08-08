@@ -19,7 +19,7 @@ Needs can be fully customized and showing with animations. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.3"
+    implementation "com.github.skydoves:needs:1.0.4"
 }
 ```
 
@@ -178,6 +178,25 @@ builder.setNeedsAnimation(NeedsAnimation.FADE)
 builder.setNeedsAnimation(NeedsAnimation.NONE)
 builder.setNeedsAnimation(NeedsAnimation.ELASTIC)
 builder.setNeedsAnimation(NeedsAnimation.CIRCULAR)
+```
+
+### Kotlin Extensions
+We can show and initialize Needs property more polish using extensions.
+
+#### showNeeds
+Shows the popup menu to the center. <br>
+It observes the target view's inflating and after inflate finished, show up on the target view.
+```
+targetView.showNeeds(needs)
+needs.showNeeds(targetView)
+```
+
+#### lazy needs
+Initializes the Needs property using `needs` lazy delegate for Activity and Fragment.
+```
+private val myNeeds by needs {
+  NeedsUtils.getNeedsStyle1(context = this, lifecycle = this)
+}
 ```
 
 ### Preference
