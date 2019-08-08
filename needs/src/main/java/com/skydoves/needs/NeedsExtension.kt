@@ -14,18 +14,54 @@
  * limitations under the License.
  */
 
+@file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package com.skydoves.needs
 
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.ComponentActivity
+import androidx.annotation.MainThread
+import androidx.fragment.app.Fragment
 
 /** shows the popup menu to the center. */
+@MainThread
 fun View.showNeeds(needs: Needs) {
   val view = this
-  this.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-    override fun onGlobalLayout() {
-      needs.show(view)
-      viewTreeObserver.removeOnGlobalLayoutListener(this)
-    }
-  })
+  this.viewTreeObserver.addOnGlobalLayoutListener(
+    object : ViewTreeObserver.OnGlobalLayoutListener {
+      override fun onGlobalLayout() {
+        needs.show(view)
+        viewTreeObserver.removeOnGlobalLayoutListener(this)
+      }
+    })
 }
+
+/** shows the popup menu to the center. */
+@MainThread
+fun Needs.showNeeds(view: View) {
+  view.viewTreeObserver.addOnGlobalLayoutListener(
+    object : ViewTreeObserver.OnGlobalLayoutListener {
+      override fun onGlobalLayout() {
+        show(view)
+        view.viewTreeObserver.removeOnGlobalLayoutListener(this)
+      }
+    })
+}
+
+/** returns a [Lazy] delegate to access the [ComponentActivity]'s Needs. */
+@MainThread
+inline fun ComponentActivity.needs(
+  noinline needsProducer: (() -> Needs)
+): Lazy<Needs> {
+  return lazy { needsProducer() }
+}
+
+/** returns a [Lazy] delegate to access the [Fragment]'s Needs. */
+@MainThread
+inline fun Fragment.needs(
+  noinline needsProducer: (() -> Needs)
+): Lazy<Needs> {
+  return lazy { needsProducer() }
+}
+
