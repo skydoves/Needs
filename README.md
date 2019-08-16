@@ -19,7 +19,7 @@ Needs can be fully customized and showing with animations. <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.4"
+    implementation "com.github.skydoves:needs:1.0.5"
 }
 ```
 

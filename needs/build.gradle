@@ -16,9 +16,9 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
 }
 
