@@ -191,11 +191,37 @@ targetView.showNeeds(needs)
 needs.showNeeds(targetView)
 ```
 
-#### lazy needs
-Initializes the Needs property using `needs` lazy delegate for Activity and Fragment.
+### Lazy initialization
+We can initialize the needs property lazily using `needs` keyword and Needs.Factory abstract class.<br>
+The `needs` extension keyword can be used on Activity and Fragment.
 ```
-private val myNeeds by needs {
-  NeedsUtils.getNeedsStyle1(context = this, lifecycle = this)
+class MainActivity : AppCompatActivity() {
+  private val myNeeds by needs(DarkNeedsFactory::class)
+  
+  // ..
+}
+```
+
+We should create a class which extends Needs.Factory.<br>
+An implementation class of the factory must have a default(non-argument) constructor.
+```kotlin
+class DarkNeedsFactory : Needs.Factory() {
+
+  override fun create(context: Context, lifecycle: LifecycleOwner): Needs {
+    return Needs.Builder(context)
+      .setTitle("Permission instructions \nfor using this Android app.")
+      .setDescription("The above accesses are used to better serve you. This application is available even if you do not agree to allow it.")
+      .setConfirm("Confirm")
+      .setBackgroundAlpha(0.6f)
+      .setLifecycleOwner(lifecycle)
+      .setNeedsAnimation(NeedsAnimation.FADE)
+      .addNeedsItem(NeedsItem(null, "· SD Card", "(Required)", "   Access photos, media, and files on device."))
+      .addNeedsItem(NeedsItem(null, "· Location", "(Required)", "   Access this device's location."))
+      .addNeedsItem(NeedsItem(null, "· Camera", "(Optional)", "   Take pictures and record video."))
+      .addNeedsItem(NeedsItem(null, "· Contact", "(Optional)", "   Access this device's contacts."))
+      .addNeedsItem(NeedsItem(null, "· SMS", "(Optional)", "   Send and view SMS messages."))
+      .build()
+  }
 }
 ```
 
