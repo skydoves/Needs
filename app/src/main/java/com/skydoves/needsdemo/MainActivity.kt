@@ -21,7 +21,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.needs.Needs
 import com.skydoves.needs.needs
-import com.skydoves.needs.showNeeds
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     needs1.setOnConfirmListener { needs1.dismiss() }
-    needs1.showNeeds(button0)
+    needs1.show(button0)
 
     this.needs0 = DarkNeedsFactory().create(this, this)
 

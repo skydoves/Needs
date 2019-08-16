@@ -19,30 +19,10 @@
 package com.skydoves.needs
 
 import android.view.View
-import android.view.ViewTreeObserver
 import androidx.annotation.MainThread
 
 /** shows the popup menu to the center. */
 @MainThread
 fun View.showNeeds(needs: Needs) {
-  val view = this
-  this.viewTreeObserver.addOnGlobalLayoutListener(
-    object : ViewTreeObserver.OnGlobalLayoutListener {
-      override fun onGlobalLayout() {
-        needs.show(view)
-        viewTreeObserver.removeOnGlobalLayoutListener(this)
-      }
-    })
-}
-
-/** shows the popup menu to the center. */
-@MainThread
-fun Needs.showNeeds(view: View) {
-  view.viewTreeObserver.addOnGlobalLayoutListener(
-    object : ViewTreeObserver.OnGlobalLayoutListener {
-      override fun onGlobalLayout() {
-        show(view)
-        view.viewTreeObserver.removeOnGlobalLayoutListener(this)
-      }
-    })
+  needs.show(this)
 }

@@ -29,6 +29,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.annotation.ColorInt
+import androidx.annotation.MainThread
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -197,18 +198,21 @@ class Needs(
   }
 
   /** shows the popup menu to the center. */
+  @MainThread
   fun show(view: View) {
     if (!isShowing) {
+      isShowing = true
       preferenceName?.let {
         if (needsPreferenceManager.shouldShowUP(it, showTimes)) {
           needsPreferenceManager.putIncrementedTimes(it)
         } else return
       }
 
-      applyWindowAnimation()
-      backgroundWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-      bodyWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-      isShowing = true
+      view.post {
+        applyWindowAnimation()
+        backgroundWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        bodyWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+      }
     }
   }
 
