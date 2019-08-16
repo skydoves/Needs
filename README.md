@@ -28,7 +28,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.5"
+    implementation "com.github.skydoves:needs:1.0.6"
 }
 ```
 
@@ -197,7 +197,6 @@ Shows the popup menu to the center. <br>
 It observes the target view's inflating and after inflate finished, show up on the target view.
 ```
 targetView.showNeeds(needs)
-needs.showNeeds(targetView)
 ```
 
 ### Lazy initialization
