@@ -16,6 +16,15 @@ Needs can be fully customized and showing with animations. <br>
 [![JitPack](https://jitpack.io/v/skydoves/Needs.svg)](https://jitpack.io/#skydoves/Needs)
 
 ### Gradle
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+```gradle
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+```
+
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
