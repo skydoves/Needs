@@ -324,4 +324,15 @@ class Needs(
 
     fun build(): Needs = Needs(context, this)
   }
+
+  /**
+   * An abstract factory class for creating [Needs] instance.
+   *
+   * A factory implementation class must have a non-argument constructor.
+   */
+  abstract class Factory {
+
+    /** returns an instance of [Needs]. */
+    abstract fun create(context: Context, lifecycle: LifecycleOwner): Needs
+  }
 }
