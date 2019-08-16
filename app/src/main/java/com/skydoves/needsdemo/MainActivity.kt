@@ -27,9 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
   private lateinit var needs0: Needs
-  private val needs1 by needs {
-    NeedsUtils.getNeedsStyle1(this, this)
-  }
+  private val needs1 by needs(DarkNeedsFactory::class)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -38,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     needs1.setOnConfirmListener { needs1.dismiss() }
     needs1.showNeeds(button0)
 
-    this.needs0 = NeedsUtils.getNeedsStyle1(this, this)
+    this.needs0 = DarkNeedsFactory().create(this, this)
 
     button0.setOnClickListener {
       needs0 = NeedsUtils.getNeedsStyle0(this, this)
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     button1.setOnClickListener {
-      needs0 = NeedsUtils.getNeedsStyle1(this, this)
+      needs0 = DarkNeedsFactory().create(this, this)
       setOnConfirmListener()
       needs0.show(main)
     }
