@@ -26,14 +26,13 @@ import kotlin.reflect.KClass
 inline fun <reified T : Needs.Factory> ComponentActivity.needs(
   factory: KClass<T>
 ): Lazy<Needs> {
-  return NeedsLazy(this, this, factory)
+  return ActivityNeedsLazy(this, this, factory)
 }
 
 /** returns a [Lazy] delegate to access the [Fragment]'s Needs property. */
 @MainThread
 inline fun <reified T : Needs.Factory> Fragment.needs(
   factory: KClass<T>
-): Lazy<Needs> {
-  val mContext = context ?: throw Exception("fragment's context must not be null.")
-  return NeedsLazy(mContext, this, factory)
+): Lazy<Needs?> {
+  return FragmentNeedsLazy(this, this, factory)
 }

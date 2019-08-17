@@ -18,16 +18,15 @@ package com.skydoves.needs
 
 import android.content.Context
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import kotlin.reflect.KClass
 
 /**
- * An implementation of [Lazy] used by [ComponentActivity] and [Fragment]
+ * An implementation of [Lazy] used by [ComponentActivity]
  *
  * tied to the given [lifecycleOwner], [clazz].
  */
-class NeedsLazy<out T : Needs.Factory>(
+class ActivityNeedsLazy<out T : Needs.Factory>(
   private val context: Context,
   private val lifecycleOwner: LifecycleOwner,
   private val clazz: KClass<T>
