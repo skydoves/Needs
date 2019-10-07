@@ -18,7 +18,11 @@ package com.skydoves.needs
 
 import android.content.Context
 import android.graphics.Point
+import android.graphics.drawable.Drawable
 import android.view.WindowManager
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
 /** gets display size as a point. */
@@ -43,6 +47,16 @@ internal fun Context.dp2Px(dp: Float): Int {
 }
 
 /** gets a compat color from resource. */
-internal fun Context.contextColor(resource: Int): Int {
+internal fun Context.contextColor(@ColorRes resource: Int): Int {
   return ContextCompat.getColor(this, resource)
+}
+
+/** gets a drawable from resource. */
+internal fun Context.contextDrawable(@DrawableRes resource: Int): Drawable? {
+  return ContextCompat.getDrawable(this, resource)
+}
+
+/** gets a string from resource. */
+internal fun Context.contextString(@StringRes resource: Int): String {
+  return this.getString(resource)
 }

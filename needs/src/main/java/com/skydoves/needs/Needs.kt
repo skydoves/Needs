@@ -29,7 +29,10 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -303,13 +306,17 @@ class Needs(
     var backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
     fun setTitleIcon(drawable: Drawable): Builder = apply { this.titleIcon = drawable }
+    fun setTitleIconResource(@DrawableRes value: Int): Builder = apply { this.titleIcon = context.contextDrawable(value) }
     fun setTitle(value: String): Builder = apply { this.title = value }
+    fun setTitleResource(@StringRes value: Int) = apply { this.title = context.contextString(value) }
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
     fun setDescription(value: String): Builder = apply { this.description = value }
+    fun setDescriptionResource(@StringRes value: Int): Builder = apply { this.description = context.contextString(value) }
     fun setDescriptionTextForm(value: TextForm): Builder = apply { this.descriptionTextForm = value }
     fun setConfirmBackgroundColor(@ColorInt value: Int): Builder = apply { this.confirmBackgroundColor = value }
-    fun setConfirmBackgroundColorResource(value: Int): Builder = apply { this.confirmBackgroundColor = context.contextColor(value) }
+    fun setConfirmBackgroundColorResource(@ColorRes value: Int): Builder = apply { this.confirmBackgroundColor = context.contextColor(value) }
     fun setConfirm(value: String): Builder = apply { this.confirm = value }
+    fun setConfirmResource(@StringRes value: Int): Builder = apply { this.confirm = context.contextString(value) }
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
     fun setConfirmVisible(value: Boolean): Builder = apply { this.confirmVisible = value }
     fun setListAdapter(value: RecyclerView.Adapter<*>): Builder = apply { this.listAdapter = value }
@@ -318,11 +325,12 @@ class Needs(
     fun addNeedsItem(value: NeedsItem): Builder = apply { this.needsList.add(value) }
     fun addNeedsItemList(value: List<NeedsItem>): Builder = apply { this.needsList.addAll(value) }
     fun setBackground(value: Drawable): Builder = apply { this.background = value }
+    fun setBackgroundResource(@DrawableRes value: Int): Builder = apply { this.background = context.contextDrawable(value) }
     fun setBackgroundColor(@ColorInt value: Int): Builder = apply { this.backgroundColor = value }
-    fun setBackgroundColorResource(value: Int): Builder = apply { this.backgroundColor = context.contextColor(value) }
+    fun setBackgroundColorResource(@ColorRes value: Int): Builder = apply { this.backgroundColor = context.contextColor(value) }
     fun setBackgroundAlpha(value: Float): Builder = apply { this.backgroundAlpha = value }
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
-    fun setDividerColorResource(value: Int): Builder = apply { this.dividerColor = context.contextColor(value) }
+    fun setDividerColorResource(@ColorRes value: Int): Builder = apply { this.dividerColor = context.contextColor(value) }
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
     fun setDividerHeight(value: Float): Builder = apply { this.dividerHeight = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
