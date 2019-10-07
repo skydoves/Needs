@@ -86,7 +86,7 @@ class Needs(
   }
 
   private fun createByBuilder() {
-    with(bodyView) {
+    with(this.bodyView) {
       title.text = builder.title
       description.text = builder.description
       confirm.text = builder.confirm
@@ -94,7 +94,7 @@ class Needs(
       confirm_wrapper.visible(builder.confirmVisible)
     }
 
-    with(builder) {
+    with(this.builder) {
       titleIcon?.let {
         bodyView.title_icon.setImageDrawable(it)
         bodyView.title_icon.visible(true)
@@ -110,7 +110,7 @@ class Needs(
     initializeTheme()
     initializePreferences()
 
-    bodyWindow.width = context.displaySize().x - context.dp2Px(builder.padding) * 2
+    this.bodyWindow.width = context.displaySize().x - context.dp2Px(builder.padding) * 2
   }
 
   private fun initializeTextForm() {
@@ -128,21 +128,21 @@ class Needs(
   }
 
   private fun initializeRecyclerView() {
-    builder.listAdapter?.let {
-      bodyView.recyclerView.adapter = it
+    this.builder.listAdapter?.let {
+      this.bodyView.recyclerView.adapter = it
     } ?: let {
-      adapter = NeedsAdapter(builder.needsItemTheme)
-      bodyView.recyclerView.adapter = adapter
-      adapter.addItemList(builder.needsList)
+      this.adapter = NeedsAdapter(builder.needsItemTheme)
+      this.bodyView.recyclerView.adapter = adapter
+      this.adapter.addItemList(this.builder.needsList)
     }
-    bodyView.recyclerView.layoutManager = LinearLayoutManager(context)
+    this.bodyView.recyclerView.layoutManager = LinearLayoutManager(context)
     val params = bodyView.recyclerView.layoutParams as LinearLayout.LayoutParams
     params.height = context.dp2Px(builder.listHeight)
-    bodyView.recyclerView.layoutParams = params
+    this.bodyView.recyclerView.layoutParams = params
   }
 
   private fun initializeDivider() {
-    with(bodyView) {
+    with(this.bodyView) {
       divider_top.setBackgroundColor(builder.dividerColor)
       divider_top.visible(builder.dividerVisible)
       divider_top.layoutParams.height = context.dp2Px(builder.dividerHeight)
@@ -153,13 +153,13 @@ class Needs(
   }
 
   private fun initializeBackground() {
-    builder.background?.let { backgroundView.overlap.background = it }
-    backgroundView.overlap.setBackgroundColor(builder.backgroundColor)
-    backgroundView.overlap.alpha = builder.backgroundAlpha
+    this.builder.background?.let { this.backgroundView.overlap.background = it }
+    this.backgroundView.overlap.setBackgroundColor(this.builder.backgroundColor)
+    this.backgroundView.overlap.alpha = this.builder.backgroundAlpha
   }
 
   private fun initializeTheme() {
-    builder.needsTheme?.let {
+    this.builder.needsTheme?.let {
       with(bodyView) {
         setBackgroundColor(it.backgroundColor)
         title.applyTextForm(it.titleTextForm)
@@ -170,58 +170,67 @@ class Needs(
   }
 
   private fun initializePreferences() {
-    preferenceName = builder.preferenceName
-    showTimes = builder.showTimes
+    this.preferenceName = builder.preferenceName
+    this.showTimes = builder.showTimes
   }
 
   private fun applyWindowAnimation() {
-    when (builder.needsAnimation) {
-      NeedsAnimation.ELASTIC -> bodyWindow.animationStyle = R.style.Elastic
+    when (this.builder.needsAnimation) {
+      NeedsAnimation.ELASTIC -> this.bodyWindow.animationStyle = R.style.Elastic
       NeedsAnimation.CIRCULAR -> {
-        bodyWindow.contentView.circularRevealed()
-        bodyWindow.animationStyle = R.style.NormalDispose
+        this.bodyWindow.contentView.circularRevealed()
+        this.bodyWindow.animationStyle = R.style.NormalDispose
       }
       NeedsAnimation.FADE -> {
-        bodyWindow.animationStyle = R.style.Fade
-        backgroundWindow.animationStyle = R.style.Fade
+        this.bodyWindow.animationStyle = R.style.Fade
+        this.backgroundWindow.animationStyle = R.style.Fade
       }
-      else -> bodyWindow.animationStyle = R.style.Normal
+      else -> this.bodyWindow.animationStyle = R.style.Normal
     }
   }
 
+  /**
+   * sets system UI visibility flags for [backgroundView].
+   *
+   * @param visibility visibility value.
+   */
+  fun setBackgroundSystemUiVisibility(visibility: Int) {
+    this.backgroundView.systemUiVisibility = visibility
+  }
+
   fun setOnConfirmListener(onConfirmListener: OnConfirmListener) {
-    bodyView.confirm.setOnClickListener { onConfirmListener.onConfirm() }
+    this.bodyView.confirm.setOnClickListener { onConfirmListener.onConfirm() }
   }
 
   fun setOnConfirmListener(block: () -> Unit) {
-    bodyView.confirm.setOnClickListener { block() }
+    this.bodyView.confirm.setOnClickListener { block() }
   }
 
   /** shows the popup menu to the center. */
   @MainThread
   fun show(view: View) {
-    if (!isShowing) {
-      isShowing = true
-      preferenceName?.let {
-        if (needsPreferenceManager.shouldShowUP(it, showTimes)) {
-          needsPreferenceManager.putIncrementedTimes(it)
+    if (!this.isShowing) {
+      this.isShowing = true
+      this.preferenceName?.let {
+        if (this.needsPreferenceManager.shouldShowUP(it, this.showTimes)) {
+          this.needsPreferenceManager.putIncrementedTimes(it)
         } else return
       }
 
       view.post {
         applyWindowAnimation()
-        backgroundWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-        bodyWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        this.backgroundWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        this.bodyWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
       }
     }
   }
 
   /** dismiss the popup menu. */
   fun dismiss() {
-    if (isShowing) {
-      backgroundWindow.dismiss()
-      bodyWindow.dismiss()
-      isShowing = false
+    if (this.isShowing) {
+      this.backgroundWindow.dismiss()
+      this.bodyWindow.dismiss()
+      this.isShowing = false
     }
   }
 
@@ -290,6 +299,8 @@ class Needs(
     var preferenceName: String? = null
     @JvmField
     var showTimes: Int = 1
+    @JvmField
+    var backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
     fun setTitleIcon(drawable: Drawable): Builder = apply { this.titleIcon = drawable }
     fun setTitle(value: String): Builder = apply { this.title = value }
@@ -297,6 +308,7 @@ class Needs(
     fun setDescription(value: String): Builder = apply { this.description = value }
     fun setDescriptionTextForm(value: TextForm): Builder = apply { this.descriptionTextForm = value }
     fun setConfirmBackgroundColor(@ColorInt value: Int): Builder = apply { this.confirmBackgroundColor = value }
+    fun setConfirmBackgroundColorResource(value: Int): Builder = apply { this.confirmBackgroundColor = context.contextColor(value) }
     fun setConfirm(value: String): Builder = apply { this.confirm = value }
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
     fun setConfirmVisible(value: Boolean): Builder = apply { this.confirmVisible = value }
@@ -307,8 +319,10 @@ class Needs(
     fun addNeedsItemList(value: List<NeedsItem>): Builder = apply { this.needsList.addAll(value) }
     fun setBackground(value: Drawable): Builder = apply { this.background = value }
     fun setBackgroundColor(@ColorInt value: Int): Builder = apply { this.backgroundColor = value }
+    fun setBackgroundColorResource(value: Int): Builder = apply { this.backgroundColor = context.contextColor(value) }
     fun setBackgroundAlpha(value: Float): Builder = apply { this.backgroundAlpha = value }
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
+    fun setDividerColorResource(value: Int): Builder = apply { this.dividerColor = context.contextColor(value) }
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
     fun setDividerHeight(value: Float): Builder = apply { this.dividerHeight = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
@@ -317,6 +331,7 @@ class Needs(
     fun setNeedsAnimation(value: NeedsAnimation): Builder = apply { this.needsAnimation = value }
     fun setPreferenceName(value: String): Builder = apply { this.preferenceName = value }
     fun setShowTime(value: Int): Builder = apply { this.showTimes = value }
+    fun setBackgroundSystemUiVisibility(visibility: Int): Builder = apply { this.backgroundSystemUiVisibility = visibility }
     fun setOnConfirmListener(value: OnConfirmListener): Builder = apply { this.onConfirmListener = value }
     inline fun setOnConfirmListener(noinline block: () -> Unit): Builder = apply {
       this.onConfirmListener = object : OnConfirmListener {

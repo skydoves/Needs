@@ -19,6 +19,7 @@ package com.skydoves.needs
 import android.content.Context
 import android.graphics.Point
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 
 /** gets display size as a point. */
 internal fun Context.displaySize(): Point {
@@ -39,4 +40,9 @@ internal fun Context.dp2Px(dp: Int): Int {
 internal fun Context.dp2Px(dp: Float): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
+}
+
+/** gets a compat color from resource. */
+internal fun Context.contextColor(resource: Int): Int {
+  return ContextCompat.getColor(this, resource)
 }
