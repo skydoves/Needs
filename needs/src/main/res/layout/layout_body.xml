@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nestedScrollView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:focusable="true"
-    android:background="@android:color/white">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nestedScrollView"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="@android:color/white"
+  android:focusable="true">
 
   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:paddingLeft="30dp"
+      android:paddingTop="10dp"
+      android:paddingRight="30dp"
+      android:paddingBottom="30dp">
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          android:paddingLeft="30dp"
-          android:paddingRight="30dp"
-          android:paddingTop="10dp"
-          android:paddingBottom="30dp">
+      <FrameLayout
+        android:id="@+id/divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/divider" />
 
-          <ImageView
-              android:id="@+id/title_icon"
-              android:layout_width="45dp"
-              android:layout_height="45dp"
-              android:src="@drawable/ic_icon"
-              android:visibility="gone"
-              android:layout_marginTop="20dp"
-              android:layout_gravity="center_horizontal"
-              tools:visibility="visible"/>
+      <FrameLayout
+        android:id="@+id/divider_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/divider" />
 
-          <TextView
-              android:id="@+id/title"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="18sp"
-              android:textStyle="bold"
-              android:textColor="@color/title"
-              android:gravity="center"
-              android:layout_marginTop="20dp"
-              app:fontFamily="sans-serif"
-              tools:text="Information"/>
+      <ImageView
+        android:id="@+id/title_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_icon"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
-          <FrameLayout
-              android:id="@+id/divider_top"
-              android:layout_width="match_parent"
-              android:layout_height="0.8dp"
-              android:background="@color/divider"
-              android:layout_marginTop="20dp"/>
+      <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@color/title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif"
+        tools:text="Information" />
 
-          <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/recyclerView"
-              android:layout_width="match_parent"
-              android:layout_height="160dp"
-              android:paddingTop="15dp"
-              android:clipToPadding="false"
-              tools:listitem="@layout/item_needs"/>
+      <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="13sp"
+        app:fontFamily="sans-serif"
+        tools:text="description here" />
 
-          <FrameLayout
-              android:id="@+id/divider_bottom"
-              android:layout_width="match_parent"
-              android:layout_height="0.8dp"
-              android:background="@color/divider"/>
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:clipToPadding="false"
+        android:paddingTop="15dp"
+        tools:listitem="@layout/item_needs" />
+    </LinearLayout>
 
-          <TextView
-              android:id="@+id/description"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:textSize="13sp"
-              app:fontFamily="sans-serif"
-              tools:text="description here"/>
-      </LinearLayout>
+    <LinearLayout
+      android:id="@+id/confirm_wrapper"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:focusable="true">
 
-      <LinearLayout
-          android:id="@+id/confirm_wrapper"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:clickable="true"
-          android:focusable="true"
-          android:background="?attr/selectableItemBackground">
-
-          <TextView
-              android:id="@+id/confirm"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:textSize="18sp"
-              android:textColor="@color/white"
-              android:gravity="center"
-              android:layout_gravity="center"
-              android:background="@color/colorPrimary"
-              app:fontFamily="sans-serif"
-              tools:text="confirm"/>
-      </LinearLayout>
+      <TextView
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:fontFamily="sans-serif"
+        tools:text="confirm" />
+    </LinearLayout>
   </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NeedsDemo</string>
+  <string name="app_name">NeedsDemo</string>
   <string name="label_style0">Show Style0</string>
   <string name="label_style1">Show Style1</string>
 </resources>
