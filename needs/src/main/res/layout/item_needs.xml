@@ -5,6 +5,9 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="horizontal"
+  android:paddingStart="0dp"
+  android:paddingLeft="0dp"
+  android:paddingEnd="10dp"
   android:paddingRight="10dp"
   android:paddingBottom="10dp">
 
@@ -13,9 +16,9 @@
     android:layout_width="45dp"
     android:layout_height="45dp"
     android:layout_gravity="center_vertical"
+    android:layout_marginEnd="10dp"
     android:layout_marginRight="10dp"
-    android:padding="5dp"
-    tools:src="@drawable/ic_icon" />
+    android:padding="5dp" />
 
   <LinearLayout
     android:layout_width="match_parent"
@@ -42,6 +45,7 @@
         android:id="@+id/item_needs_require"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
         android:layout_marginLeft="6dp"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
