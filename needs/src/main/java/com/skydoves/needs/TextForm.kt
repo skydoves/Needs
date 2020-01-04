@@ -18,16 +18,16 @@
 
 package com.skydoves.needs
 
-import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
-import androidx.core.content.ContextCompat
+import androidx.annotation.ColorInt
 
 @DslMarker
 annotation class TextFormDsl
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
-fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
-  TextForm.Builder(context).apply(block).build()
+fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
+  TextForm.Builder().apply(block).build()
 
 /**
  * TextFrom is an attribute class what has some attributes about TextView
@@ -41,11 +41,12 @@ class TextForm(builder: Builder) {
   val textStyle = builder.textStyle
 
   /** Builder class for[TextForm]. */
-  class Builder(context: Context) {
+  class Builder {
     @JvmField
     var textSize = 14
+    @ColorInt
     @JvmField
-    var textColor = ContextCompat.getColor(context, R.color.white)
+    var textColor = Color.WHITE
     @JvmField
     var textStyle = Typeface.NORMAL
 

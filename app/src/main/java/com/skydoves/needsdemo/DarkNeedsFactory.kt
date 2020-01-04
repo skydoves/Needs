@@ -31,7 +31,7 @@ import com.skydoves.needs.textForm
 class DarkNeedsFactory : Needs.Factory() {
 
   override fun create(context: Context, lifecycle: LifecycleOwner): Needs {
-    val titleForm = textForm(context) {
+    val titleForm = textForm {
       textSize = 18
       textStyle = Typeface.BOLD
       textColor = ContextCompat.getColor(context, R.color.black)
@@ -39,11 +39,11 @@ class DarkNeedsFactory : Needs.Factory() {
 
     val theme = needsTheme(context) {
       backgroundColor = ContextCompat.getColor(context, R.color.background)
-      titleTextForm = textForm(context) {
+      titleTextForm = textForm {
         textSize = 18
         textColor = ContextCompat.getColor(context, R.color.white)
       }
-      descriptionTextForm = textForm(context) {
+      descriptionTextForm = textForm {
         textSize = 12
         textColor = ContextCompat.getColor(context, R.color.description)
       }
@@ -51,32 +51,43 @@ class DarkNeedsFactory : Needs.Factory() {
 
     val itemTheme = needsItemTheme(context) {
       backgroundColor = ContextCompat.getColor(context, R.color.background)
-      titleTextForm = textForm(context) {
+      titleTextForm = textForm {
         textColor = ContextCompat.getColor(context, R.color.colorPrimaryDark)
         textSize = 16
       }
-      descriptionTextForm = textForm(context) {
+      descriptionTextForm = textForm {
         textColor = ContextCompat.getColor(context, R.color.description)
       }
     }
 
     return createNeeds(context) {
-      titleIcon = ContextCompat.getDrawable(context, R.drawable.icon)!!
-      title = "Permission instructions \nfor using this Android app."
-      titleTextForm = titleForm
-      description = "The above accesses are used to better serve you. This application is available even if you do not agree to allow it."
-      confirm = "Confirm"
-      backgroundAlpha = 0.6f
-      lifecycleOwner = lifecycle
-      needsTheme = theme
-      needsItemTheme = itemTheme
-      needsAnimation = NeedsAnimation.CIRCULAR
-      dividerHeight = 0.6f
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sd_storage_white_24dp), "SD Card", "(Required)", "Access photos, media, and files on device."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_location_on_white_24dp), "Location", "(Required)", "Access this device's location."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_camera_alt_white_24dp), "Camera", "(Optional)", "Take pictures and record video."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_contacts_white_24dp), "Contact", "(Optional)", "Access this device's contacts."))
-      addNeedsItem(NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sms_white_24dp), "SMS", "(Optional)", "Send and view SMS messages."))
+      setTitleIcon(ContextCompat.getDrawable(context, R.drawable.icon))
+      setTitle("Permission instructions \nfor using this Android app.")
+      setTitleTextForm(titleForm)
+      setDescription(
+        "The above accesses are used to better serve you. This application is available even if you do not agree to allow it.")
+      setConfirm("Confirm")
+      setBackgroundAlpha(0.7f)
+      setLifecycleOwner(lifecycle)
+      setNeedsTheme(theme)
+      setNeedsItemTheme(itemTheme)
+      setNeedsAnimation(NeedsAnimation.CIRCULAR)
+      setDividerHeight(0.5f)
+      addNeedsItem(
+        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sd_storage_white_24dp),
+          "SD Card", "(Required)", "Access photos, media, and files on device."))
+      addNeedsItem(
+        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_location_on_white_24dp),
+          "Location", "(Required)", "Access this device's location."))
+      addNeedsItem(
+        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_camera_alt_white_24dp), "Camera",
+          "(Optional)", "Take pictures and record video."))
+      addNeedsItem(
+        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_contacts_white_24dp), "Contact",
+          "(Optional)", "Access this device's contacts."))
+      addNeedsItem(
+        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sms_white_24dp), "SMS",
+          "(Optional)", "Send and view SMS messages."))
     }
   }
 }

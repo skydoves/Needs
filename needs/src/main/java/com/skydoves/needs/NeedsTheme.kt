@@ -19,8 +19,9 @@
 package com.skydoves.needs
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
-import androidx.core.content.ContextCompat
+import androidx.annotation.ColorInt
 
 @DslMarker
 annotation class NeedsThemeDsl
@@ -40,30 +41,34 @@ class NeedsTheme(builder: Builder) {
   /** Builder class for creating [NeedsTheme]. */
   @NeedsThemeDsl
   class Builder(context: Context) {
+    @ColorInt
     @JvmField
-    var backgroundColor = ContextCompat.getColor(context, R.color.white)
+    var backgroundColor = Color.WHITE
     @JvmField
-    var titleTextForm = textForm(context) {
-      textColor = ContextCompat.getColor(context, R.color.title)
+    var titleTextForm = textForm {
+      textColor = Color.parseColor("#333333")
       textSize = 18
       textStyle = Typeface.BOLD
     }
     @JvmField
-    var descriptionTextForm = textForm(context) {
-      textColor = ContextCompat.getColor(context, R.color.description)
+    var descriptionTextForm = textForm {
+      textColor = Color.parseColor("#FAFAFA")
       textSize = 12
       textStyle = Typeface.NORMAL
     }
     @JvmField
-    var confirmTextForm = textForm(context) {
-      textColor = ContextCompat.getColor(context, R.color.white)
+    var confirmTextForm = textForm {
+      textColor = Color.WHITE
       textSize = 18
       textStyle = Typeface.BOLD
     }
 
     fun setBackgroundColor(value: Int): Builder = apply { this.backgroundColor = value }
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
-    fun setDescriptionTextForm(value: TextForm): Builder = apply { this.descriptionTextForm = value }
+    fun setDescriptionTextForm(value: TextForm): Builder = apply {
+      this.descriptionTextForm = value
+    }
+
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
     fun build(): NeedsTheme {
       return NeedsTheme(this)

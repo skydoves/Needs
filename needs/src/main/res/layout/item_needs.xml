@@ -35,7 +35,7 @@
         android:id="@+id/item_needs_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/title"
+        android:textColor="#333333"
         android:textSize="16sp"
         android:textStyle="bold"
         app:fontFamily="sans-serif"

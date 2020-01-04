@@ -22,26 +22,15 @@
       android:paddingRight="30dp"
       android:paddingBottom="30dp">
 
-      <View
-        android:id="@+id/divider_top"
-        android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/divider" />
-
-      <View
-        android:id="@+id/divider_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:background="@color/divider" />
-
       <ImageView
         android:id="@+id/title_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:src="@drawable/ic_icon"
         android:visibility="gone"
+        tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
       <TextView
@@ -50,11 +39,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textColor="@color/title"
+        android:textColor="#333333"
         android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="sans-serif"
         tools:text="Information" />
+
+      <FrameLayout
+        android:id="@+id/divider_top"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="20dp"
+        android:background="#ededed" />
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:clipToPadding="false"
+        android:paddingTop="15dp"
+        tools:listitem="@layout/item_needs" />
+
+      <FrameLayout
+        android:id="@+id/divider_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="#ededed" />
 
       <TextView
         android:id="@+id/description"
@@ -64,14 +74,6 @@
         android:textSize="13sp"
         app:fontFamily="sans-serif"
         tools:text="description here" />
-
-      <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:clipToPadding="false"
-        android:paddingTop="15dp"
-        tools:listitem="@layout/item_needs" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,7 +91,7 @@
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         app:fontFamily="sans-serif"
         tools:text="confirm" />

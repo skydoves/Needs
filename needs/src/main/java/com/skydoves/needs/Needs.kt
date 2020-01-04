@@ -28,7 +28,11 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.MainThread
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -36,8 +40,15 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_background.view.*
-import kotlinx.android.synthetic.main.layout_body.view.*
+import kotlinx.android.synthetic.main.layout_background.view.overlap
+import kotlinx.android.synthetic.main.layout_body.view.confirm
+import kotlinx.android.synthetic.main.layout_body.view.confirm_wrapper
+import kotlinx.android.synthetic.main.layout_body.view.description
+import kotlinx.android.synthetic.main.layout_body.view.divider_bottom
+import kotlinx.android.synthetic.main.layout_body.view.divider_top
+import kotlinx.android.synthetic.main.layout_body.view.recyclerView
+import kotlinx.android.synthetic.main.layout_body.view.title
+import kotlinx.android.synthetic.main.layout_body.view.title_icon
 
 @DslMarker
 annotation class NeedsDsl
@@ -286,7 +297,7 @@ class Needs(
     val needsList = ArrayList<NeedsItem>()
     @ColorInt
     @JvmField
-    var dividerColor: Int = ContextCompat.getColor(context, R.color.divider)
+    var dividerColor: Int = Color.parseColor("#ededed")
     @JvmField
     var dividerVisible: Boolean = true
     @JvmField
@@ -313,7 +324,7 @@ class Needs(
     @JvmField
     var backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
-    fun setTitleIcon(drawable: Drawable): Builder = apply { this.titleIcon = drawable }
+    fun setTitleIcon(drawable: Drawable?): Builder = apply { this.titleIcon = drawable }
     fun setTitleIconResource(@DrawableRes value: Int): Builder = apply {
       this.titleIcon = context.contextDrawable(value)
     }

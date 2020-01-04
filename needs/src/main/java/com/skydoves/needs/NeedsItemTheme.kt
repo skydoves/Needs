@@ -19,7 +19,9 @@
 package com.skydoves.needs
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 
 @DslMarker
@@ -40,23 +42,24 @@ class NeedsItemTheme(builder: Builder) {
   /** Builder class for creating [NeedsItemTheme]. */
   @NeedsItemThemeDsl
   class Builder(context: Context) {
+    @ColorInt
     @JvmField
-    var backgroundColor = ContextCompat.getColor(context, R.color.white)
+    var backgroundColor = Color.WHITE
     @JvmField
-    var titleTextForm = textForm(context) {
-      textColor = ContextCompat.getColor(context, R.color.title)
+    var titleTextForm = textForm {
+      textColor = Color.parseColor("#333333")
       textSize = 16
       textStyle = Typeface.BOLD
     }
     @JvmField
-    var requireTextForm = textForm(context) {
+    var requireTextForm = textForm {
       textColor = ContextCompat.getColor(context, R.color.colorPrimary)
       textSize = 16
       textStyle = Typeface.NORMAL
     }
     @JvmField
-    var descriptionTextForm = textForm(context) {
-      textColor = ContextCompat.getColor(context, R.color.description)
+    var descriptionTextForm = textForm {
+      textColor = Color.parseColor("#FAFAFA")
       textSize = 12
       textStyle = Typeface.NORMAL
     }
