@@ -16,31 +16,58 @@
 
 package com.skydoves.needs
 
+import android.view.LayoutInflater
 import android.view.View
-import com.skydoves.baserecyclerviewadapter.BaseAdapter
-import com.skydoves.baserecyclerviewadapter.SectionRow
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_needs.view.*
 
-/** NeedsAdapter is an implementation of [BaseAdapter] that has [NeedsItem] as items. */
+/** NeedsAdapter is an implementation of [RecyclerView.Adapter] that has [NeedsItem] as items. */
 @Suppress("unused")
 internal class NeedsAdapter(
   private val needsItemTheme: NeedsItemTheme? = null
-) : BaseAdapter() {
+) : RecyclerView.Adapter<NeedsAdapter.NeedsViewHolder>() {
 
-  init {
-    addSection(ArrayList<NeedsItem>())
+  private val needsItemList: MutableList<NeedsItem> = mutableListOf()
+
+  override fun onCreateViewHolder(
+    parent: ViewGroup,
+    viewType: Int
+  ): NeedsViewHolder {
+    val inflater = LayoutInflater.from(parent.context)
+    return NeedsViewHolder(inflater.inflate(R.layout.item_needs, parent, false))
+  }
+
+  override fun onBindViewHolder(holder: NeedsViewHolder, position: Int) {
+    val needsItem = this.needsItemList[position]
+    holder.itemView.run {
+      needsItem.icon?.let {
+        item_needs_image.visible(true)
+        item_needs_image.setImageDrawable(it)
+      } ?: let { item_needs_image.visible(false) }
+      item_needs_title.text = needsItem.title
+      item_needs_require.text = needsItem.require
+      item_needs_description.text = needsItem.description
+
+      needsItemTheme?.let {
+        item_needs_title.applyTextForm(needsItemTheme.titleTextForm)
+        item_needs_require.applyTextForm(needsItemTheme.requireTextForm)
+        item_needs_description.applyTextForm(needsItemTheme.descriptionTextForm)
+      }
+    }
   }
 
   fun addItem(needsItem: NeedsItem) {
-    addItemOnSection(0, needsItem)
+    this.needsItemList.add(needsItem)
     notifyDataSetChanged()
   }
 
   fun addItemList(needsItems: List<NeedsItem>) {
-    addItemListOnSection(0, needsItems)
+    this.needsItemList.addAll(needsItems)
     notifyDataSetChanged()
   }
 
-  override fun layout(sectionRow: SectionRow) = R.layout.item_needs
+  override fun getItemCount() = this.needsItemList.size
 
-  override fun viewHolder(layout: Int, view: View) = NeedsViewHolder(view, needsItemTheme)
+  class NeedsViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
