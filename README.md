@@ -28,7 +28,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:needs:1.0.7"
+    implementation "com.github.skydoves:needs:1.0.8"
 }
 ```
 
@@ -80,7 +80,7 @@ needs.setOnConfirmListener(new OnConfirmListener() {
       public void onConfirm() {
           // confirmed
       }
-    })
+    });
 ```
 
 ### Show and dismiss
@@ -94,7 +94,7 @@ needs.dismiss(); // dismiss the popup menu.
 TextFrom is an attribute class that has some attributes about TextView for customizing popup texts.
 
 ```java
-TextForm textForm = new TextForm.Builder(context)
+TextForm textForm = new TextForm.Builder()
           .setTextColor(R.color.colorPrimary)
           .setTextSize(14)
           .setTextStyle(Typeface.BOLD)
@@ -107,7 +107,7 @@ builder.setConfirmTextForm(confirmTextForm);
 
 Here is how to create `TextForm` using kotlin dsl.
 ```kotlin
-val titleForm = textForm(baseContext) {
+val titleForm = textForm {
   textSize = 18
   textStyle = Typeface.BOLD
   textColor = ContextCompat.getColor(baseContext, R.color.black)
