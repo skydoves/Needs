@@ -32,6 +32,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
+import androidx.annotation.Px
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
@@ -360,8 +361,8 @@ class Needs(
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
     fun setConfirmVisible(value: Boolean): Builder = apply { this.confirmVisible = value }
     fun setListAdapter(value: RecyclerView.Adapter<*>): Builder = apply { this.listAdapter = value }
-    fun setListHeight(value: Int): Builder = apply { this.listHeight = value }
-    fun setPadding(value: Int): Builder = apply { this.padding = value }
+    fun setListHeight(@Px value: Int): Builder = apply { this.listHeight = value }
+    fun setPadding(@Px value: Int): Builder = apply { this.padding = value }
     fun addNeedsItem(value: NeedsItem): Builder = apply { this.needsList.add(value) }
     fun addNeedsItemList(value: List<NeedsItem>): Builder = apply { this.needsList.addAll(value) }
     fun setBackground(value: Drawable): Builder = apply { this.background = value }
