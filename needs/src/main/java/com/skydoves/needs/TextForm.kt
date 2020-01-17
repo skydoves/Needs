@@ -44,14 +44,13 @@ class TextForm(builder: Builder) {
   class Builder {
     @JvmField
     var textSize = 14
-    @ColorInt
-    @JvmField
+    @JvmField @ColorInt
     var textColor = Color.WHITE
     @JvmField
     var textStyle = Typeface.NORMAL
 
     fun setTextSize(value: Int): Builder = apply { this.textSize = value }
-    fun setTextColor(value: Int): Builder = apply { this.textColor = value }
+    fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
     fun setTextStyle(value: Int): Builder = apply { this.textStyle = value }
     fun build(): TextForm {
       return TextForm(this)

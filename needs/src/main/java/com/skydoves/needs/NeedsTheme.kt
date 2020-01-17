@@ -22,6 +22,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 
 @DslMarker
 annotation class NeedsThemeDsl
@@ -33,16 +35,15 @@ fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsThe
 /** NeedsTheme is an attribute class for changing [Needs] popup theme easily. */
 class NeedsTheme(builder: Builder) {
 
-  val backgroundColor = builder.backgroundColor
+  @ColorInt val backgroundColor = builder.backgroundColor
   val titleTextForm = builder.titleTextForm
   val descriptionTextForm = builder.descriptionTextForm
   val confirmTextForm = builder.confirmTextForm
 
   /** Builder class for creating [NeedsTheme]. */
   @NeedsThemeDsl
-  class Builder(context: Context) {
-    @ColorInt
-    @JvmField
+  class Builder(val context: Context) {
+    @JvmField @ColorInt
     var backgroundColor = Color.WHITE
     @JvmField
     var titleTextForm = textForm {
@@ -63,7 +64,11 @@ class NeedsTheme(builder: Builder) {
       textStyle = Typeface.BOLD
     }
 
-    fun setBackgroundColor(value: Int): Builder = apply { this.backgroundColor = value }
+    fun setBackgroundColor(@ColorInt value: Int): Builder = apply { this.backgroundColor = value }
+    fun setBackgroundColorResource(@ColorRes value: Int): Builder = apply {
+      this.backgroundColor = ContextCompat.getColor(context, value)
+    }
+
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
     fun setDescriptionTextForm(value: TextForm): Builder = apply {
       this.descriptionTextForm = value

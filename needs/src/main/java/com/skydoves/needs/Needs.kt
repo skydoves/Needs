@@ -39,7 +39,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_background.view.overlap
 import kotlinx.android.synthetic.main.layout_body.view.confirm
@@ -142,14 +141,15 @@ class Needs(
     this.builder.listAdapter?.let {
       this.bodyView.recyclerView.adapter = it
     } ?: let {
-      this.adapter = NeedsAdapter(builder.needsItemTheme)
-      this.bodyView.recyclerView.adapter = adapter
-      this.adapter.addItemList(this.builder.needsList)
+      this.adapter = NeedsAdapter(builder.needsItemTheme).apply {
+        addItemList(builder.needsList)
+        bodyView.recyclerView.adapter = this
+      }
     }
-    this.bodyView.recyclerView.layoutManager = LinearLayoutManager(context)
-    val params = bodyView.recyclerView.layoutParams as LinearLayout.LayoutParams
-    params.height = context.dp2Px(builder.listHeight)
-    this.bodyView.recyclerView.layoutParams = params
+    this.bodyView.recyclerView.layoutParams =
+      (bodyView.recyclerView.layoutParams as LinearLayout.LayoutParams).apply {
+        height = context.dp2Px(builder.listHeight)
+      }
   }
 
   private fun initializeDivider() {
@@ -169,8 +169,10 @@ class Needs(
 
   private fun initializeBackground() {
     this.builder.background?.let { this.backgroundView.overlap.background = it }
-    this.backgroundView.overlap.setBackgroundColor(this.builder.backgroundColor)
-    this.backgroundView.overlap.alpha = this.builder.backgroundAlpha
+    this.backgroundView.overlap.apply {
+      setBackgroundColor(builder.backgroundColor)
+      alpha = builder.backgroundAlpha
+    }
   }
 
   private fun initializeTheme() {
@@ -382,7 +384,7 @@ class Needs(
     }
 
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
-    fun setDividerHeight(value: Float): Builder = apply { this.dividerHeight = value }
+    fun setDividerHeight(@Px value: Float): Builder = apply { this.dividerHeight = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
     fun setNeedsTheme(value: NeedsTheme): Builder = apply { this.needsTheme = value }
     fun setNeedsItemTheme(value: NeedsItemTheme): Builder = apply { this.needsItemTheme = value }

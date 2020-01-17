@@ -20,7 +20,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_needs.view.*
+import kotlinx.android.synthetic.main.item_needs.view.item_needs_description
+import kotlinx.android.synthetic.main.item_needs.view.item_needs_image
+import kotlinx.android.synthetic.main.item_needs.view.item_needs_require
+import kotlinx.android.synthetic.main.item_needs.view.item_needs_title
 
 /** NeedsAdapter is an implementation of [RecyclerView.Adapter] that has [NeedsItem] as items. */
 @Suppress("unused")

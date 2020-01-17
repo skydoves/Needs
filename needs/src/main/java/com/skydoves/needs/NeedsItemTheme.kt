@@ -22,6 +22,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
 @DslMarker
@@ -34,16 +35,15 @@ fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): 
 /** NeedsItemTheme is an attribute class for changing item theme easily. */
 class NeedsItemTheme(builder: Builder) {
 
-  val backgroundColor = builder.backgroundColor
+  @ColorInt val backgroundColor = builder.backgroundColor
   val titleTextForm = builder.titleTextForm
   val requireTextForm = builder.requireTextForm
   val descriptionTextForm = builder.descriptionTextForm
 
   /** Builder class for creating [NeedsItemTheme]. */
   @NeedsItemThemeDsl
-  class Builder(context: Context) {
-    @ColorInt
-    @JvmField
+  class Builder(val context: Context) {
+    @JvmField @ColorInt
     var backgroundColor = Color.WHITE
     @JvmField
     var titleTextForm = textForm {
@@ -64,7 +64,11 @@ class NeedsItemTheme(builder: Builder) {
       textStyle = Typeface.NORMAL
     }
 
-    fun setBackgroundColor(value: Int): Builder = apply { this.backgroundColor = value }
+    fun setBackgroundColor(@ColorInt value: Int): Builder = apply { this.backgroundColor = value }
+    fun setBackgroundColorResource(@ColorRes value: Int): Builder = apply {
+      this.backgroundColor = ContextCompat.getColor(context, value)
+    }
+
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
     fun setRequireTextForm(value: TextForm): Builder = apply { this.requireTextForm = value }
     fun descriptionTextForm(value: TextForm): Builder = apply { this.descriptionTextForm = value }

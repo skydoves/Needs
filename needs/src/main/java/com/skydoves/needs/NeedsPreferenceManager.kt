@@ -26,7 +26,8 @@ class NeedsPreferenceManager(context: Context) {
 
   init {
     needsPreferenceManager = this
-    sharedPreferenceManager = context.getSharedPreferences("com.skydoves.needs", Context.MODE_PRIVATE)
+    sharedPreferenceManager =
+      context.getSharedPreferences("com.skydoves.needs", Context.MODE_PRIVATE)
   }
 
   /** get a singleton instance of the [NeedsPreferenceManager]. */

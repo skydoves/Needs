@@ -22,7 +22,7 @@
       android:paddingRight="30dp"
       android:paddingBottom="30dp">
 
-      <ImageView
+      <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/title_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -33,7 +33,7 @@
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
-      <TextView
+      <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
         android:layout_height="160dp"
         android:clipToPadding="false"
         android:paddingTop="15dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_needs" />
 
       <FrameLayout
@@ -66,7 +67,7 @@
         android:layout_height="0.8dp"
         android:background="#ededed" />
 
-      <TextView
+      <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,7 +85,7 @@
       android:clickable="true"
       android:focusable="true">
 
-      <TextView
+      <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

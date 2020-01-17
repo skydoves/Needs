@@ -21,7 +21,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.needs.Needs
 import com.skydoves.needs.needs
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.button0
+import kotlinx.android.synthetic.main.activity_main.button1
+import kotlinx.android.synthetic.main.activity_main.main
 
 class MainActivity : AppCompatActivity() {
 
