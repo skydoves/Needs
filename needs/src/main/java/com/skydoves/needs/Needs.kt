@@ -40,15 +40,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_background.view.overlap
-import kotlinx.android.synthetic.main.layout_body.view.confirm
-import kotlinx.android.synthetic.main.layout_body.view.confirm_wrapper
-import kotlinx.android.synthetic.main.layout_body.view.description
-import kotlinx.android.synthetic.main.layout_body.view.divider_bottom
-import kotlinx.android.synthetic.main.layout_body.view.divider_top
-import kotlinx.android.synthetic.main.layout_body.view.recyclerView
-import kotlinx.android.synthetic.main.layout_body.view.title
-import kotlinx.android.synthetic.main.layout_body.view.title_icon
+import com.skydoves.needs.databinding.LayoutBackgroundBinding
+import com.skydoves.needs.databinding.LayoutBodyBinding
 
 @DslMarker
 annotation class NeedsDsl
@@ -66,9 +59,9 @@ class Needs(
   private val builder: Builder
 ) : LifecycleObserver {
 
-  private val backgroundView: View
+  private val backgroundView: LayoutBackgroundBinding
   private val backgroundWindow: PopupWindow
-  private val bodyView: View
+  private val bodyView: LayoutBodyBinding
   private val bodyWindow: PopupWindow
   private lateinit var adapter: NeedsAdapter
   private var onConfirmListener: OnConfirmListener? = null
@@ -79,16 +72,16 @@ class Needs(
   private val needsPreferenceManager = NeedsPreferenceManager(context).getInstance()
 
   init {
-    val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    this.backgroundView = inflater.inflate(R.layout.layout_background, null)
+    val inflater = LayoutInflater.from(context)
+    this.backgroundView = LayoutBackgroundBinding.inflate(inflater, null, false)
     this.backgroundWindow = PopupWindow(
-      backgroundView,
+      backgroundView.root,
       FrameLayout.LayoutParams.MATCH_PARENT,
       FrameLayout.LayoutParams.MATCH_PARENT
     )
-    this.bodyView = inflater.inflate(R.layout.layout_body, null)
+    this.bodyView = LayoutBodyBinding.inflate(inflater, null, false)
     this.bodyWindow = PopupWindow(
-      bodyView,
+      bodyView.root,
       context.displaySize().x - context.dp2Px(20) * 2,
       LinearLayout.LayoutParams.WRAP_CONTENT
     )
@@ -101,13 +94,13 @@ class Needs(
       description.text = builder.description
       confirm.text = builder.confirm
       confirm.setBackgroundColor(builder.confirmBackgroundColor)
-      confirm_wrapper.visible(builder.confirmVisible)
+      bodyView.confirmWrapper.visible(builder.confirmVisible)
     }
 
     with(this.builder) {
       titleIcon?.let {
-        bodyView.title_icon.setImageDrawable(it)
-        bodyView.title_icon.visible(true)
+        bodyView.titleIcon.setImageDrawable(it)
+        bodyView.titleIcon.visible(true)
       }
       onConfirmListener?.let { setOnConfirmListener(it) }
       lifecycleOwner?.lifecycle?.addObserver(this@Needs)
@@ -154,12 +147,12 @@ class Needs(
 
   private fun initializeDivider() {
     with(this.bodyView) {
-      divider_top.apply {
+      dividerTop.apply {
         setBackgroundColor(builder.dividerColor)
         visible(builder.dividerVisible)
         layoutParams.height = context.dp2Px(builder.dividerHeight)
       }
-      divider_bottom.apply {
+      dividerBottom.apply {
         setBackgroundColor(builder.dividerColor)
         visible(builder.dividerVisible)
         layoutParams.height = context.dp2Px(builder.dividerHeight)
@@ -177,11 +170,11 @@ class Needs(
 
   private fun initializeTheme() {
     this.builder.needsTheme?.let {
-      with(bodyView) {
+      with(bodyView.root) {
         setBackgroundColor(it.backgroundColor)
-        title.applyTextForm(it.titleTextForm)
-        description.applyTextForm(it.descriptionTextForm)
-        confirm.applyTextForm(it.confirmTextForm)
+        bodyView.title.applyTextForm(it.titleTextForm)
+        bodyView.description.applyTextForm(it.descriptionTextForm)
+        bodyView.confirm.applyTextForm(it.confirmTextForm)
       }
     }
   }
@@ -212,7 +205,7 @@ class Needs(
    * @param visibility visibility value.
    */
   fun setBackgroundSystemUiVisibility(visibility: Int) {
-    this.backgroundView.systemUiVisibility = visibility
+    this.backgroundView.root.systemUiVisibility = visibility
   }
 
   fun setOnConfirmListener(onConfirmListener: OnConfirmListener) {
@@ -271,59 +264,85 @@ class Needs(
   class Builder(private val context: Context) {
     @JvmField
     var titleIcon: Drawable? = null
+
     @JvmField
     var title: String = "Title"
+
     @JvmField
     var titleTextForm: TextForm? = null
+
     @JvmField
     var description: String = "description"
+
     @JvmField
     var descriptionTextForm: TextForm? = null
+
     @ColorInt
     @JvmField
     var confirmBackgroundColor: Int = ContextCompat.getColor(context, R.color.colorPrimary)
+
     @JvmField
     var confirm: String = "Confirm"
+
     @JvmField
     var confirmTextForm: TextForm? = null
+
     @JvmField
     var onConfirmListener: OnConfirmListener? = null
+
     @JvmField
     var confirmVisible: Boolean = true
+
     @JvmField
     var padding: Int = 20
+
     @JvmField
     var listAdapter: RecyclerView.Adapter<*>? = null
+
     @JvmField
     var listHeight: Int = 240
+
     @JvmField
     val needsList = ArrayList<NeedsItem>()
+
     @ColorInt
     @JvmField
     var dividerColor: Int = Color.parseColor("#ededed")
+
     @JvmField
     var dividerVisible: Boolean = true
+
     @JvmField
     var dividerHeight: Float = 0.8f
+
     @JvmField
     var background: Drawable? = null
+
     @ColorInt
     @JvmField
     var backgroundColor: Int = Color.BLACK
+
     @JvmField
     var backgroundAlpha: Float = 0.6f
+
     @JvmField
     var lifecycleOwner: LifecycleOwner? = null
+
     @JvmField
     var needsTheme: NeedsTheme? = null
+
     @JvmField
     var needsItemTheme: NeedsItemTheme? = null
+
     @JvmField
     var needsAnimation: NeedsAnimation = NeedsAnimation.NONE
+
     @JvmField
     var preferenceName: String? = null
+
     @JvmField
     var showTimes: Int = 1
+
     @JvmField
     var backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 

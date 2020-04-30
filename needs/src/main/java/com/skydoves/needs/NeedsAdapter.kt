@@ -20,10 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_needs.view.item_needs_description
-import kotlinx.android.synthetic.main.item_needs.view.item_needs_image
-import kotlinx.android.synthetic.main.item_needs.view.item_needs_require
-import kotlinx.android.synthetic.main.item_needs.view.item_needs_title
+import com.skydoves.needs.databinding.ItemNeedsBinding
 
 /** NeedsAdapter is an implementation of [RecyclerView.Adapter] that has [NeedsItem] as items. */
 @Suppress("unused")
@@ -33,29 +30,32 @@ internal class NeedsAdapter(
 
   private val needsItemList: MutableList<NeedsItem> = mutableListOf()
 
+  private lateinit var binding: ItemNeedsBinding
+
   override fun onCreateViewHolder(
     parent: ViewGroup,
     viewType: Int
   ): NeedsViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    return NeedsViewHolder(inflater.inflate(R.layout.item_needs, parent, false))
+    binding = ItemNeedsBinding.inflate(inflater, parent, false)
+    return NeedsViewHolder(binding.root)
   }
 
   override fun onBindViewHolder(holder: NeedsViewHolder, position: Int) {
     val needsItem = this.needsItemList[position]
     holder.itemView.run {
       needsItem.icon?.let {
-        item_needs_image.visible(true)
-        item_needs_image.setImageDrawable(it)
-      } ?: let { item_needs_image.visible(false) }
-      item_needs_title.text = needsItem.title
-      item_needs_require.text = needsItem.require
-      item_needs_description.text = needsItem.description
+        binding.itemNeedsImage.visible(true)
+        binding.itemNeedsImage.setImageDrawable(it)
+      } ?: let { binding.itemNeedsImage.visible(false) }
+      binding.itemNeedsTitle.text = needsItem.title
+      binding.itemNeedsRequire.text = needsItem.require
+      binding.itemNeedsDescription.text = needsItem.description
 
       needsItemTheme?.let {
-        item_needs_title.applyTextForm(it.titleTextForm)
-        item_needs_require.applyTextForm(it.requireTextForm)
-        item_needs_description.applyTextForm(it.descriptionTextForm)
+        binding.itemNeedsTitle.applyTextForm(it.titleTextForm)
+        binding.itemNeedsRequire.applyTextForm(it.requireTextForm)
+        binding.itemNeedsDescription.applyTextForm(it.descriptionTextForm)
       }
     }
   }
