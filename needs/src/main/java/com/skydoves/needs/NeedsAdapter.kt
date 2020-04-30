@@ -53,9 +53,9 @@ internal class NeedsAdapter(
       item_needs_description.text = needsItem.description
 
       needsItemTheme?.let {
-        item_needs_title.applyTextForm(needsItemTheme.titleTextForm)
-        item_needs_require.applyTextForm(needsItemTheme.requireTextForm)
-        item_needs_description.applyTextForm(needsItemTheme.descriptionTextForm)
+        item_needs_title.applyTextForm(it.titleTextForm)
+        item_needs_require.applyTextForm(it.requireTextForm)
+        item_needs_description.applyTextForm(it.descriptionTextForm)
       }
     }
   }
