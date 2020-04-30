@@ -1,7 +1,7 @@
 # Needs
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) 
-[![Build Status](https://travis-ci.org/skydoves/Needs.svg?branch=master)](https://travis-ci.org/skydoves/Needs)
+[![Build Status](https://github.com/skydoves/Needs/workflows/Android%20CI/badge.svg)](https://github.com/skydoves/Needs/actions)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Needs-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7569)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23358-orange.svg)](https://androidweekly.net/issues/issue-358)
 [![Javadoc](https://img.shields.io/badge/Javadoc-Needs-yellow.svg)](https://skydoves.github.io/libraries/needs/javadoc/needs/com.skydoves.needs/index.html)<br>
