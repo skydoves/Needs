@@ -20,20 +20,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 @Suppress("PrivatePropertyName")
-class NeedsPreferenceManager(context: Context) {
-
-  private val SHOWED_UP = "SHOWED_UP"
-
-  init {
-    needsPreferenceManager = this
-    sharedPreferenceManager =
-      context.getSharedPreferences("com.skydoves.needs", Context.MODE_PRIVATE)
-  }
-
-  /** get a singleton instance of the [NeedsPreferenceManager]. */
-  fun getInstance(): NeedsPreferenceManager {
-    return needsPreferenceManager
-  }
+internal class NeedsPreferenceManager private constructor() {
 
   /** should show or not the popup. */
   fun shouldShowUP(name: String, times: Int): Boolean {
@@ -56,7 +43,19 @@ class NeedsPreferenceManager(context: Context) {
   }
 
   companion object {
-    lateinit var needsPreferenceManager: NeedsPreferenceManager
-    lateinit var sharedPreferenceManager: SharedPreferences
+    @Volatile
+    private var instance: NeedsPreferenceManager? = null
+    private lateinit var sharedPreferenceManager: SharedPreferences
+    private const val SHOWED_UP = "SHOWED_UP"
+
+    @JvmStatic
+    fun getInstance(context: Context): NeedsPreferenceManager =
+      instance ?: synchronized(this) {
+        instance ?: NeedsPreferenceManager().also {
+          instance = it
+          sharedPreferenceManager =
+            context.getSharedPreferences("com.skydoves.needs", Context.MODE_PRIVATE)
+        }
+      }
   }
 }

@@ -69,7 +69,7 @@ class Needs(
     private set
   private var showTimes: Int = 1
   private var preferenceName: String? = null
-  private val needsPreferenceManager = NeedsPreferenceManager(context).getInstance()
+  private val needsPreferenceManager = NeedsPreferenceManager.getInstance(context)
 
   init {
     val inflater = LayoutInflater.from(context)
@@ -259,7 +259,6 @@ class Needs(
   }
 
   /** Builder class for creating [Needs]. */
-  @Suppress("NOTHING_TO_INLINE")
   @NeedsDsl
   class Builder(private val context: Context) {
     @JvmField
@@ -418,7 +417,7 @@ class Needs(
       this.onConfirmListener = value
     }
 
-    inline fun setOnConfirmListener(noinline block: () -> Unit): Builder = apply {
+    fun setOnConfirmListener(block: () -> Unit): Builder = apply {
       this.onConfirmListener = object : OnConfirmListener {
         override fun onConfirm() {
           block()
