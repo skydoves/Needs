@@ -35,7 +35,8 @@ fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): 
 /** NeedsItemTheme is an attribute class for changing item theme easily. */
 class NeedsItemTheme(builder: Builder) {
 
-  @ColorInt val backgroundColor = builder.backgroundColor
+  @ColorInt
+  val backgroundColor = builder.backgroundColor
   val titleTextForm = builder.titleTextForm
   val requireTextForm = builder.requireTextForm
   val descriptionTextForm = builder.descriptionTextForm
@@ -43,20 +44,24 @@ class NeedsItemTheme(builder: Builder) {
   /** Builder class for creating [NeedsItemTheme]. */
   @NeedsItemThemeDsl
   class Builder(val context: Context) {
-    @JvmField @ColorInt
+    @JvmField
+    @ColorInt
     var backgroundColor = Color.WHITE
+
     @JvmField
     var titleTextForm = textForm {
       textColor = Color.parseColor("#333333")
       textSize = 16
       textStyle = Typeface.BOLD
     }
+
     @JvmField
     var requireTextForm = textForm {
       textColor = ContextCompat.getColor(context, R.color.colorPrimary)
       textSize = 16
       textStyle = Typeface.NORMAL
     }
+
     @JvmField
     var descriptionTextForm = textForm {
       textColor = Color.parseColor("#FAFAFA")

@@ -40,12 +40,15 @@ class TextForm(builder: Builder) {
   val textColor = builder.textColor
   val textStyle = builder.textStyle
 
-  /** Builder class for[TextForm]. */
+  /** Builder class for [TextForm]. */
   class Builder {
     @JvmField
     var textSize = 14
-    @JvmField @ColorInt
+
+    @JvmField
+    @ColorInt
     var textColor = Color.WHITE
+
     @JvmField
     var textStyle = Typeface.NORMAL
 
