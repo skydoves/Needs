@@ -17,7 +17,6 @@
 package com.skydoves.needs
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.needs.databinding.ItemNeedsBinding
@@ -30,34 +29,18 @@ internal class NeedsAdapter(
 
   private val needsItemList: MutableList<NeedsItem> = mutableListOf()
 
-  private lateinit var binding: ItemNeedsBinding
-
   override fun onCreateViewHolder(
     parent: ViewGroup,
     viewType: Int
   ): NeedsViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    binding = ItemNeedsBinding.inflate(inflater, parent, false)
-    return NeedsViewHolder(binding.root)
+    val binding = ItemNeedsBinding.inflate(inflater, parent, false)
+    return NeedsViewHolder(binding)
   }
 
   override fun onBindViewHolder(holder: NeedsViewHolder, position: Int) {
     val needsItem = this.needsItemList[position]
-    holder.itemView.run {
-      needsItem.icon?.let {
-        binding.itemNeedsImage.visible(true)
-        binding.itemNeedsImage.setImageDrawable(it)
-      } ?: let { binding.itemNeedsImage.visible(false) }
-      binding.itemNeedsTitle.text = needsItem.title
-      binding.itemNeedsRequire.text = needsItem.require
-      binding.itemNeedsDescription.text = needsItem.description
-
-      needsItemTheme?.let {
-        binding.itemNeedsTitle.applyTextForm(it.titleTextForm)
-        binding.itemNeedsRequire.applyTextForm(it.requireTextForm)
-        binding.itemNeedsDescription.applyTextForm(it.descriptionTextForm)
-      }
-    }
+    holder.bind(needsItem, needsItemTheme)
   }
 
   fun addItem(needsItem: NeedsItem) {
@@ -72,5 +55,24 @@ internal class NeedsAdapter(
 
   override fun getItemCount() = this.needsItemList.size
 
-  class NeedsViewHolder(view: View) : RecyclerView.ViewHolder(view)
+  class NeedsViewHolder(private val binding: ItemNeedsBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(needsItem: NeedsItem, needsItemTheme: NeedsItemTheme? = null) {
+      itemView.run {
+        needsItem.icon?.let {
+          binding.itemNeedsImage.visible(true)
+          binding.itemNeedsImage.setImageDrawable(it)
+        } ?: let { binding.itemNeedsImage.visible(false) }
+        binding.itemNeedsTitle.text = needsItem.title
+        binding.itemNeedsRequire.text = needsItem.require
+        binding.itemNeedsDescription.text = needsItem.description
+
+        needsItemTheme?.let {
+          binding.itemNeedsTitle.applyTextForm(it.titleTextForm)
+          binding.itemNeedsRequire.applyTextForm(it.requireTextForm)
+          binding.itemNeedsDescription.applyTextForm(it.descriptionTextForm)
+        }
+      }
+    }
+  }
 }
