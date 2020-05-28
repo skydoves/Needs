@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.needs
 
 import android.content.Context
@@ -31,7 +33,6 @@ import androidx.core.content.res.ResourcesCompat
 annotation class BulletFormDsl
 
 /** creates an instance of [BulletForm] from [BulletForm.Builder] using kotlin dsl. */
-@BulletFormDsl
 fun bulletForm(context: Context, block: BulletForm.Builder.() -> Unit): BulletForm =
   BulletForm.Builder(context).apply(block).build()
 
@@ -42,13 +43,21 @@ fun bulletForm(context: Context, block: BulletForm.Builder.() -> Unit): BulletFo
 @BulletFormDsl
 class BulletForm(builder: Builder) {
 
+  val bulletSize = builder.bulletSize
+  val bulletColor = builder.bulletColor
+  val bulletPadding = builder.bulletPadding
+  val bulletDrawable = builder.bulletDrawable
+
   /** Builder class for creating [BulletForm] */
   class Builder(private val context: Context) {
     @JvmField
-    var bulletSize: Int = context.dp2Px(3)
+    var bulletSize: Int = context.dp2Px(4)
 
     @JvmField
     var bulletColor: Int = Color.GRAY
+
+    @JvmField
+    var bulletPadding: Int = context.dp2Px(6)
 
     @JvmField
     var bulletDrawable: Drawable? = GradientDrawable().apply {
@@ -57,18 +66,28 @@ class BulletForm(builder: Builder) {
       setSize(bulletSize, bulletSize)
     }
 
-    fun setBulletSize(value: Int) = apply { this.bulletSize = value }
+    fun setBulletSize(value: Int) = apply {
+      this.bulletSize = value
+      (bulletDrawable as? GradientDrawable)?.apply { setSize(value, value) }
+    }
+
     fun setBulletSizeResource(@DimenRes value: Int) = apply {
-      this.bulletSize = context.resources.getDimensionPixelSize(value)
+      setBulletSize(context.resources.getDimensionPixelSize(value))
     }
 
-    fun setBulletColor(@ColorInt value: Int) = apply { this.bulletColor = value }
+    fun setBulletColor(@ColorInt value: Int) = apply {
+      this.bulletColor = value
+      (bulletDrawable as? GradientDrawable)?.apply { setColor(value) }
+    }
+
     fun setBulletColorResource(@ColorRes value: Int) = apply {
-      this.bulletColor = ContextCompat.getColor(context, value)
+      setBulletColor(ContextCompat.getColor(context, value))
     }
 
-    fun setDrawable(value: Drawable) = apply { this.bulletDrawable = value }
-    fun setDrawableResource(@DrawableRes value: Int) = apply {
+    fun setBulletPadding(value: Int) = apply { this.bulletPadding = value }
+
+    fun setBulletDrawable(value: Drawable) = apply { this.bulletDrawable = value }
+    fun setBulletDrawableResource(@DrawableRes value: Int) = apply {
       this.bulletDrawable = ResourcesCompat.getDrawable(context.resources, value, null)
     }
 

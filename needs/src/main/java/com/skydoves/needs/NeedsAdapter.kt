@@ -18,6 +18,7 @@ package com.skydoves.needs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.needs.databinding.ItemNeedsBinding
 
@@ -35,12 +36,12 @@ internal class NeedsAdapter(
   ): NeedsViewHolder {
     val inflater = LayoutInflater.from(parent.context)
     val binding = ItemNeedsBinding.inflate(inflater, parent, false)
-    return NeedsViewHolder(binding)
+    return NeedsViewHolder(binding, needsItemTheme)
   }
 
   override fun onBindViewHolder(holder: NeedsViewHolder, position: Int) {
     val needsItem = this.needsItemList[position]
-    holder.bind(needsItem, needsItemTheme)
+    holder.bind(needsItem)
   }
 
   fun addItem(needsItem: NeedsItem) {
@@ -55,9 +56,12 @@ internal class NeedsAdapter(
 
   override fun getItemCount() = this.needsItemList.size
 
-  class NeedsViewHolder(private val binding: ItemNeedsBinding) : RecyclerView.ViewHolder(binding.root) {
+  class NeedsViewHolder(
+    private val binding: ItemNeedsBinding,
+    private val needsItemTheme: NeedsItemTheme? = null
+  ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(needsItem: NeedsItem, needsItemTheme: NeedsItemTheme? = null) {
+    fun bind(needsItem: NeedsItem) {
       itemView.run {
         needsItem.icon?.let {
           binding.itemNeedsImage.visible(true)
@@ -66,13 +70,19 @@ internal class NeedsAdapter(
         binding.itemNeedsTitle.text = needsItem.title
         binding.itemNeedsRequire.text = needsItem.require
         binding.itemNeedsDescription.text = needsItem.description
-
+        applyBulletOnText(binding.itemNeedsTitle)
         needsItemTheme?.let {
           binding.itemNeedsTitle.applyTextForm(it.titleTextForm)
           binding.itemNeedsRequire.applyTextForm(it.requireTextForm)
           binding.itemNeedsDescription.applyTextForm(it.descriptionTextForm)
         }
       }
+    }
+
+    private fun applyBulletOnText(textView: TextView) {
+      val bulletForm = needsItemTheme?.bulletForm ?: return
+      textView.setCompoundDrawablesWithIntrinsicBounds(bulletForm.bulletDrawable, null, null, null)
+      textView.compoundDrawablePadding = bulletForm.bulletPadding
     }
   }
 }

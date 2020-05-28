@@ -37,6 +37,7 @@ class NeedsItemTheme(builder: Builder) {
 
   @ColorInt
   val backgroundColor = builder.backgroundColor
+  val bulletForm = builder.bulletForm
   val titleTextForm = builder.titleTextForm
   val requireTextForm = builder.requireTextForm
   val descriptionTextForm = builder.descriptionTextForm
@@ -47,6 +48,9 @@ class NeedsItemTheme(builder: Builder) {
     @JvmField
     @ColorInt
     var backgroundColor = Color.WHITE
+
+    @JvmField
+    var bulletForm: BulletForm? = null
 
     @JvmField
     var titleTextForm = textForm {

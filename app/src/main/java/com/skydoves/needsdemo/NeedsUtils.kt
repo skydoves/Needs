@@ -17,14 +17,28 @@
 package com.skydoves.needsdemo
 
 import android.content.Context
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.needs.Needs
 import com.skydoves.needs.NeedsAnimation
 import com.skydoves.needs.NeedsItem
+import com.skydoves.needs.bulletForm
+import com.skydoves.needs.needsItemTheme
+import com.skydoves.needs.textForm
 
 object NeedsUtils {
 
   fun getNeedsStyle0(baseContext: Context, lifecycleOwner: LifecycleOwner): Needs {
+
+    val itemTheme = needsItemTheme(baseContext) {
+      bulletForm = bulletForm(context) {
+        setBulletColorResource(R.color.colorPrimary)
+      }
+      descriptionTextForm = textForm {
+        setTextColor(ContextCompat.getColor(context, R.color.background))
+      }
+    }
+
     return Needs.Builder(baseContext)
       .setTitle("Permission instructions \nfor using this Android app.")
       .setDescription(
@@ -32,14 +46,15 @@ object NeedsUtils {
       .setConfirm("Confirm")
       .setBackgroundAlpha(0.6f)
       .setLifecycleOwner(lifecycleOwner)
+      .setNeedsItemTheme(itemTheme)
+      .addNeedsItem(
+        NeedsItem(null, "SD Card", "(Required)", "   Access photos, media, and files on device."))
+      .addNeedsItem(
+        NeedsItem(null, "Location", "(Required)", "   Access this device's location."))
+      .addNeedsItem(NeedsItem(null, "Camera", "(Optional)", "   Take pictures and record video."))
+      .addNeedsItem(NeedsItem(null, "Contact", "(Optional)", "   Access this device's contacts."))
+      .addNeedsItem(NeedsItem(null, "SMS", "(Optional)", "   Send and view SMS messages."))
       .setNeedsAnimation(NeedsAnimation.FADE)
-      .addNeedsItem(
-        NeedsItem(null, "· SD Card", "(Required)", "   Access photos, media, and files on device."))
-      .addNeedsItem(
-        NeedsItem(null, "· Location", "(Required)", "   Access this device's location."))
-      .addNeedsItem(NeedsItem(null, "· Camera", "(Optional)", "   Take pictures and record video."))
-      .addNeedsItem(NeedsItem(null, "· Contact", "(Optional)", "   Access this device's contacts."))
-      .addNeedsItem(NeedsItem(null, "· SMS", "(Optional)", "   Send and view SMS messages."))
       .build()
   }
 }
