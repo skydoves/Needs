@@ -174,7 +174,7 @@ val itemTheme = needsItemTheme(baseContext) {
 <img src="https://user-images.githubusercontent.com/24237865/83263157-1cc7b480-a1f9-11ea-8208-f3843b51bb62.png" align="right" width="32%"/>
 
 ### BulletForm
-We can make bullet points in front of every title and we can fully customize.
+We can make bullet points in front of every title and they can be fully customized.
 ```java
 BulletForm bulletForm = new BulletForm.Builder(context)
                     .setBulletColorResource(R.color.colorPrimary)
