@@ -76,11 +76,11 @@ val needs = createNeeds(baseContext) {
 We can listen to the confirm button is clicked using `OnConfirmListener`.
 ```java
 needs.setOnConfirmListener(new OnConfirmListener() {
-      @Override
-      public void onConfirm() {
-          // confirmed
-      }
-    });
+  @Override
+  public void onConfirm() {
+      // confirmed
+  }
+});
 ```
 
 ### Show and dismiss
@@ -144,13 +144,14 @@ val theme = needsTheme(baseContext) {
 ```
 
 ### NeedsItemTheme
-NeedsTheme is an attribute class for changing `Needs` popup RecyclerView's item theme easily.
+`NeedsTheme` is an attribute class for changing `Needs` popup RecyclerView's item theme easily.
 
 ```java
 NeedsItemTheme needsItemTheme = new NeedsItemTheme.Builder(context)
                .setBackgroundColor(ContextCompat.getColor(context, R.color.background))
                .setTitleTextForm(titleTextForm)
                .setRequireTextForm(requireTextForm)
+               .setBulletForm(bulletForm)
                .build();
 
 builder.setNeedsItemTheme(needsItemTheme);
@@ -168,6 +169,25 @@ val itemTheme = needsItemTheme(baseContext) {
         textColor = ContextCompat.getColor(baseContext, R.color.description)
       }
     }
+```
+
+<img src="https://user-images.githubusercontent.com/24237865/83263157-1cc7b480-a1f9-11ea-8208-f3843b51bb62.png" align="right" width="32%"/>
+
+### BulletForm
+We can make bullet points in front of every title and we can fully customize.
+```java
+BulletForm bulletForm = new BulletForm.Builder(context)
+                    .setBulletColorResource(R.color.colorPrimary)
+                    .setBulletSize(12)
+                    .setBulletPadding(9)
+                    .build();
+```
+Here is how to create `BulletForm` using kotlin dsl.
+```kotlin
+val bulletForm = bulletForm(context) {
+      setBulletColorResource(R.color.colorPrimary)
+      setBulletSize(12)
+}
 ```
 
 ### NeedsAnimation
