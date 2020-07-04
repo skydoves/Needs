@@ -21,7 +21,7 @@ import android.graphics.drawable.Drawable
 /** NeedsItem is an data class for composing [Needs] popup recyclerView item. */
 data class NeedsItem(
   val icon: Drawable? = null,
-  val title: String = "",
-  val require: String = "",
-  val description: String = ""
+  val title: CharSequence = "",
+  val require: CharSequence = "",
+  val description: CharSequence = ""
 )
