@@ -265,13 +265,13 @@ class Needs(
     var titleIcon: Drawable? = null
 
     @JvmField
-    var title: String = "Title"
+    var title: CharSequence = "Title"
 
     @JvmField
     var titleTextForm: TextForm? = null
 
     @JvmField
-    var description: String = "description"
+    var description: CharSequence = "description"
 
     @JvmField
     var descriptionTextForm: TextForm? = null
@@ -281,7 +281,7 @@ class Needs(
     var confirmBackgroundColor: Int = ContextCompat.getColor(context, R.color.colorPrimary)
 
     @JvmField
-    var confirm: String = "Confirm"
+    var confirm: CharSequence = "Confirm"
 
     @JvmField
     var confirmTextForm: TextForm? = null
@@ -353,13 +353,13 @@ class Needs(
       this.titleIcon = context.contextDrawable(value)
     }
 
-    fun setTitle(value: String): Builder = apply { this.title = value }
+    fun setTitle(value: CharSequence): Builder = apply { this.title = value }
     fun setTitleResource(@StringRes value: Int) = apply {
       this.title = context.contextString(value)
     }
 
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
-    fun setDescription(value: String): Builder = apply { this.description = value }
+    fun setDescription(value: CharSequence): Builder = apply { this.description = value }
     fun setDescriptionResource(@StringRes value: Int): Builder = apply {
       this.description = context.contextString(value)
     }
@@ -376,7 +376,7 @@ class Needs(
       this.confirmBackgroundColor = context.contextColor(value)
     }
 
-    fun setConfirm(value: String): Builder = apply { this.confirm = value }
+    fun setConfirm(value: CharSequence): Builder = apply { this.confirm = value }
     fun setConfirmResource(@StringRes value: Int): Builder = apply {
       this.confirm = context.contextString(value)
     }
