@@ -35,7 +35,8 @@ fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsThe
 /** NeedsTheme is an attribute class for changing [Needs] popup theme easily. */
 class NeedsTheme(builder: Builder) {
 
-  @ColorInt val backgroundColor = builder.backgroundColor
+  @ColorInt
+  val backgroundColor = builder.backgroundColor
   val titleTextForm = builder.titleTextForm
   val descriptionTextForm = builder.descriptionTextForm
   val confirmTextForm = builder.confirmTextForm
@@ -43,20 +44,24 @@ class NeedsTheme(builder: Builder) {
   /** Builder class for creating [NeedsTheme]. */
   @NeedsThemeDsl
   class Builder(val context: Context) {
-    @JvmField @ColorInt
+    @JvmField
+    @ColorInt
     var backgroundColor = Color.WHITE
+
     @JvmField
     var titleTextForm = textForm {
       textColor = Color.parseColor("#333333")
       textSize = 18
       textStyle = Typeface.BOLD
     }
+
     @JvmField
     var descriptionTextForm = textForm {
       textColor = Color.parseColor("#FAFAFA")
       textSize = 12
       textStyle = Typeface.NORMAL
     }
+
     @JvmField
     var confirmTextForm = textForm {
       textColor = Color.WHITE

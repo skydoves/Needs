@@ -32,7 +32,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.MainThread
-import androidx.annotation.Px
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
@@ -40,6 +39,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
+import com.skydoves.needs.annotations.Dp
 import com.skydoves.needs.databinding.LayoutBackgroundBinding
 import com.skydoves.needs.databinding.LayoutBodyBinding
 
@@ -82,7 +82,7 @@ class Needs(
     this.bodyView = LayoutBodyBinding.inflate(inflater, null, false)
     this.bodyWindow = PopupWindow(
       bodyView.root,
-      context.displaySize().x - context.dp2Px(20) * 2,
+      context.displaySize().x - context.dp2Px(builder.padding) * 2,
       LinearLayout.LayoutParams.WRAP_CONTENT
     )
     createByBuilder()
@@ -292,12 +292,14 @@ class Needs(
     @JvmField
     var confirmVisible: Boolean = true
 
+    @Dp
     @JvmField
     var padding: Int = 20
 
     @JvmField
     var listAdapter: RecyclerView.Adapter<*>? = null
 
+    @Dp
     @JvmField
     var listHeight: Int = 240
 
@@ -311,6 +313,7 @@ class Needs(
     @JvmField
     var dividerVisible: Boolean = true
 
+    @Dp
     @JvmField
     var dividerHeight: Float = 0.8f
 
@@ -381,8 +384,8 @@ class Needs(
     fun setConfirmTextForm(value: TextForm): Builder = apply { this.confirmTextForm = value }
     fun setConfirmVisible(value: Boolean): Builder = apply { this.confirmVisible = value }
     fun setListAdapter(value: RecyclerView.Adapter<*>): Builder = apply { this.listAdapter = value }
-    fun setListHeight(@Px value: Int): Builder = apply { this.listHeight = value }
-    fun setPadding(@Px value: Int): Builder = apply { this.padding = value }
+    fun setListHeight(@Dp value: Int): Builder = apply { this.listHeight = value }
+    fun setPadding(@Dp value: Int): Builder = apply { this.padding = value }
     fun addNeedsItem(value: NeedsItem): Builder = apply { this.needsList.add(value) }
     fun addNeedsItemList(value: List<NeedsItem>): Builder = apply { this.needsList.addAll(value) }
     fun setBackground(value: Drawable): Builder = apply { this.background = value }
@@ -402,7 +405,7 @@ class Needs(
     }
 
     fun setDividerVisible(value: Boolean): Builder = apply { this.dividerVisible = value }
-    fun setDividerHeight(@Px value: Float): Builder = apply { this.dividerHeight = value }
+    fun setDividerHeight(@Dp value: Float): Builder = apply { this.dividerHeight = value }
     fun setLifecycleOwner(value: LifecycleOwner): Builder = apply { this.lifecycleOwner = value }
     fun setNeedsTheme(value: NeedsTheme): Builder = apply { this.needsTheme = value }
     fun setNeedsItemTheme(value: NeedsItemTheme): Builder = apply { this.needsItemTheme = value }

@@ -21,6 +21,7 @@ package com.skydoves.needs
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
+import com.skydoves.needs.annotations.Sp
 
 @DslMarker
 annotation class TextFormDsl
@@ -36,12 +37,14 @@ fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
 @TextFormDsl
 class TextForm(builder: Builder) {
 
+  @Sp
   val textSize = builder.textSize
   val textColor = builder.textColor
   val textStyle = builder.textStyle
 
   /** Builder class for [TextForm]. */
   class Builder {
+    @Sp
     @JvmField
     var textSize = 14
 
@@ -52,7 +55,7 @@ class TextForm(builder: Builder) {
     @JvmField
     var textStyle = Typeface.NORMAL
 
-    fun setTextSize(value: Int): Builder = apply { this.textSize = value }
+    fun setTextSize(@Sp value: Int): Builder = apply { this.textSize = value }
     fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
     fun setTextStyle(value: Int): Builder = apply { this.textStyle = value }
     fun build(): TextForm {
