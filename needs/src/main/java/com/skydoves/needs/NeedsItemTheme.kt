@@ -78,6 +78,7 @@ class NeedsItemTheme(builder: Builder) {
       this.backgroundColor = ContextCompat.getColor(context, value)
     }
 
+    fun setBulletForm(value: BulletForm): Builder = apply { this.bulletForm = value }
     fun setTitleTextForm(value: TextForm): Builder = apply { this.titleTextForm = value }
     fun setRequireTextForm(value: TextForm): Builder = apply { this.requireTextForm = value }
     fun descriptionTextForm(value: TextForm): Builder = apply { this.descriptionTextForm = value }

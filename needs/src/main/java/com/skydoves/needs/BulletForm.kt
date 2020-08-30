@@ -26,8 +26,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.skydoves.needs.annotations.Dp
 
 @DslMarker
 annotation class BulletFormDsl
@@ -50,12 +52,14 @@ class BulletForm(builder: Builder) {
 
   /** Builder class for creating [BulletForm] */
   class Builder(private val context: Context) {
+    @Px
     @JvmField
     var bulletSize: Int = context.dp2Px(4)
 
     @JvmField
     var bulletColor: Int = Color.GRAY
 
+    @Dp
     @JvmField
     var bulletPadding: Int = context.dp2Px(6)
 
@@ -66,7 +70,7 @@ class BulletForm(builder: Builder) {
       setSize(bulletSize, bulletSize)
     }
 
-    fun setBulletSize(value: Int) = apply {
+    fun setBulletSize(@Px value: Int) = apply {
       this.bulletSize = value
       (bulletDrawable as? GradientDrawable)?.apply { setSize(value, value) }
     }
@@ -84,7 +88,7 @@ class BulletForm(builder: Builder) {
       setBulletColor(ContextCompat.getColor(context, value))
     }
 
-    fun setBulletPadding(value: Int) = apply { this.bulletPadding = value }
+    fun setBulletPadding(@Dp value: Int) = apply { this.bulletPadding = context.dp2Px(value) }
 
     fun setBulletDrawable(value: Drawable) = apply { this.bulletDrawable = value }
     fun setBulletDrawableResource(@DrawableRes value: Int) = apply {
