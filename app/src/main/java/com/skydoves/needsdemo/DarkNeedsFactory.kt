@@ -65,7 +65,8 @@ class DarkNeedsFactory : Needs.Factory() {
       setTitle("Permission instructions \nfor using this Android app.")
       setTitleTextForm(titleForm)
       setDescription(
-        "The above accesses are used to better serve you. This application is available even if you do not agree to allow it.")
+        "The above accesses are used to better serve you. This application is available even if you do not agree to allow it."
+      )
       setConfirm("Confirm")
       setBackgroundAlpha(0.7f)
       setLifecycleOwner(lifecycle)
@@ -74,20 +75,45 @@ class DarkNeedsFactory : Needs.Factory() {
       setNeedsAnimation(NeedsAnimation.CIRCULAR)
       setDividerHeight(0.5f)
       addNeedsItem(
-        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sd_storage_white_24dp),
-          "SD Card", "(Required)", "Access photos, media, and files on device."))
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_sd_storage_white_24dp),
+          "SD Card",
+          "(Required)",
+          "Access photos, media, and files on device."
+        )
+      )
       addNeedsItem(
-        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_location_on_white_24dp),
-          "Location", "(Required)", "Access this device's location."))
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_location_on_white_24dp),
+          "Location",
+          "(Required)",
+          "Access this device's location."
+        )
+      )
       addNeedsItem(
-        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_camera_alt_white_24dp), "Camera",
-          "(Optional)", "Take pictures and record video."))
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_camera_alt_white_24dp),
+          "Camera",
+          "(Optional)",
+          "Take pictures and record video."
+        )
+      )
       addNeedsItem(
-        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_contacts_white_24dp), "Contact",
-          "(Optional)", "Access this device's contacts."))
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_contacts_white_24dp),
+          "Contact",
+          "(Optional)",
+          "Access this device's contacts."
+        )
+      )
       addNeedsItem(
-        NeedsItem(ContextCompat.getDrawable(context, R.drawable.ic_sms_white_24dp), "SMS",
-          "(Optional)", "Send and view SMS messages."))
+        NeedsItem(
+          ContextCompat.getDrawable(context, R.drawable.ic_sms_white_24dp),
+          "SMS",
+          "(Optional)",
+          "Send and view SMS messages."
+        )
+      )
     }
   }
 }

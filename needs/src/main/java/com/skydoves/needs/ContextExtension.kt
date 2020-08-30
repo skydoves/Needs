@@ -21,7 +21,6 @@ import android.graphics.Point
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.TypedValue
-import android.view.WindowManager
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -29,11 +28,10 @@ import androidx.core.content.ContextCompat
 
 /** gets display size as a point. */
 internal fun Context.displaySize(): Point {
-  val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-  val display = wm.defaultDisplay
-  val size = Point()
-  display.getSize(size)
-  return size
+  return Point(
+    resources.displayMetrics.widthPixels,
+    resources.displayMetrics.heightPixels
+  )
 }
 
 /** dp size to px size. */

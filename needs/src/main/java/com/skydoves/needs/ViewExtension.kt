@@ -52,11 +52,13 @@ internal fun View.circularRevealed() {
             (view.left + view.right) / 2,
             (view.top + view.bottom) / 2,
             0f,
-            max(view.width, view.height).toFloat()).apply {
+            max(view.width, view.height).toFloat()
+          ).apply {
             duration = 500
             start()
           }
         }
       }
-    })
+    }
+  )
 }

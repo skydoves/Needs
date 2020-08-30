@@ -17,10 +17,9 @@
 package com.skydoves.needs
 
 /** NeedsAnimation is the collection of the popup animations.  */
-@Suppress("unused")
 enum class NeedsAnimation {
   NONE,
   ELASTIC,
   FADE,
-  CIRCULAR
+  CIRCULAR,
 }

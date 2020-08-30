@@ -42,15 +42,18 @@ object NeedsUtils {
     return Needs.Builder(baseContext)
       .setTitle("Permission instructions \nfor using this Android app.")
       .setDescription(
-        "The above accesses are used to better serve you. This application is available even if you do not agree to allow it.")
+        "The above accesses are used to better serve you. This application is available even if you do not agree to allow it."
+      )
       .setConfirm("Confirm")
       .setBackgroundAlpha(0.6f)
       .setLifecycleOwner(lifecycleOwner)
       .setNeedsItemTheme(itemTheme)
       .addNeedsItem(
-        NeedsItem(null, "SD Card", "(Required)", "   Access photos, media, and files on device."))
+        NeedsItem(null, "SD Card", "(Required)", "   Access photos, media, and files on device.")
+      )
       .addNeedsItem(
-        NeedsItem(null, "Location", "(Required)", "   Access this device's location."))
+        NeedsItem(null, "Location", "(Required)", "   Access this device's location.")
+      )
       .addNeedsItem(NeedsItem(null, "Camera", "(Optional)", "   Take pictures and record video."))
       .addNeedsItem(NeedsItem(null, "Contact", "(Optional)", "   Access this device's contacts."))
       .addNeedsItem(NeedsItem(null, "SMS", "(Optional)", "   Send and view SMS messages."))

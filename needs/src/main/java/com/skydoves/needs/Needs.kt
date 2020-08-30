@@ -214,11 +214,7 @@ class Needs(
   }
 
   fun setOnConfirmListener(block: () -> Unit) {
-    setOnConfirmListener(object : OnConfirmListener {
-      override fun onConfirm() {
-        block()
-      }
-    })
+    setOnConfirmListener(OnConfirmListener { block() })
   }
 
   /** shows the popup menu to the center. */
@@ -420,11 +416,7 @@ class Needs(
     }
 
     fun setOnConfirmListener(block: () -> Unit): Builder = apply {
-      this.onConfirmListener = object : OnConfirmListener {
-        override fun onConfirm() {
-          block()
-        }
-      }
+      setOnConfirmListener(OnConfirmListener { block() })
     }
 
     fun build(): Needs = Needs(context, this)

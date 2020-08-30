@@ -17,7 +17,8 @@
 package com.skydoves.needs
 
 /** OnConfirmListener is an interface for listening the confirm from the [Needs] popup. */
-interface OnConfirmListener {
+fun interface OnConfirmListener {
+
   /** called when the confirm button is clicked on the [Needs] popup. */
   fun onConfirm()
 }
