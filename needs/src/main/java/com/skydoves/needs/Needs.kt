@@ -31,6 +31,7 @@ import android.widget.PopupWindow
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.FloatRange
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -214,13 +215,11 @@ class Needs(
   }
 
   fun setOnConfirmListener(block: () -> Unit) {
-    val onConfirmListener = object : OnConfirmListener {
+    setOnConfirmListener(object : OnConfirmListener {
       override fun onConfirm() {
         block()
       }
-    }
-    this.onConfirmListener = onConfirmListener
-    this.bodyView.confirm.setOnClickListener { onConfirmListener.onConfirm() }
+    })
   }
 
   /** shows the popup menu to the center. */
@@ -304,7 +303,7 @@ class Needs(
     var listHeight: Int = 240
 
     @JvmField
-    val needsList = ArrayList<NeedsItem>()
+    val needsList: ArrayList<NeedsItem> = ArrayList()
 
     @ColorInt
     @JvmField
@@ -324,6 +323,7 @@ class Needs(
     @JvmField
     var backgroundColor: Int = Color.BLACK
 
+    @FloatRange(from = 0.0, to = 1.0)
     @JvmField
     var backgroundAlpha: Float = 0.6f
 
@@ -398,7 +398,7 @@ class Needs(
       this.backgroundColor = context.contextColor(value)
     }
 
-    fun setBackgroundAlpha(value: Float): Builder = apply { this.backgroundAlpha = value }
+    fun setBackgroundAlpha(@FloatRange(from = 0.0, to = 1.0) value: Float): Builder = apply { this.backgroundAlpha = value }
     fun setDividerColor(@ColorInt value: Int): Builder = apply { this.dividerColor = value }
     fun setDividerColorResource(@ColorRes value: Int): Builder = apply {
       this.dividerColor = context.contextColor(value)

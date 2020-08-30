@@ -25,10 +25,10 @@ import kotlin.math.max
 
 /** makes visible or invisible a View align the value parameter. */
 internal fun View.visible(value: Boolean) {
-  if (value) {
-    this.visibility = View.VISIBLE
+  visibility = if (value) {
+    View.VISIBLE
   } else {
-    this.visibility = View.GONE
+    View.GONE
   }
 }
 

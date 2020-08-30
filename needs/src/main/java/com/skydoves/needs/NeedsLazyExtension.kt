@@ -34,5 +34,5 @@ inline fun <reified T : Needs.Factory> ComponentActivity.needs(
 inline fun <reified T : Needs.Factory> Fragment.needs(
   factory: KClass<T>
 ): Lazy<Needs?> {
-  return FragmentNeedsLazy(this, this, factory)
+  return FragmentNeedsLazy(this, factory)
 }

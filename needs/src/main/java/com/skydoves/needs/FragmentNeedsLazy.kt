@@ -18,17 +18,15 @@ package com.skydoves.needs
 
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import kotlin.reflect.KClass
 
 /**
  * An implementation of [Lazy] used by [ComponentActivity]
  *
- * tied to the given [lifecycleOwner], [clazz].
+ * tied to the given fragment's view lifecycle, [clazz].
  */
 class FragmentNeedsLazy<out T : Needs.Factory>(
   private val fragment: Fragment,
-  private val lifecycleOwner: LifecycleOwner,
   private val clazz: KClass<T>
 ) : Lazy<Needs?> {
 
@@ -39,7 +37,12 @@ class FragmentNeedsLazy<out T : Needs.Factory>(
       var instance = cached
       if (instance == null && fragment.context != null) {
         val factory = clazz::java.get().newInstance()
-        instance = factory.create(fragment.requireContext(), lifecycleOwner)
+        val lifecycle = if (fragment.view != null) {
+          fragment.viewLifecycleOwner
+        } else {
+          fragment
+        }
+        instance = factory.create(fragment.requireContext(), lifecycle)
         cached = instance
       }
 

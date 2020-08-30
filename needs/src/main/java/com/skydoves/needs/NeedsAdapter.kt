@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.needs.databinding.ItemNeedsBinding
 
 /** NeedsAdapter is an implementation of [RecyclerView.Adapter] that has [NeedsItem] as items. */
-@Suppress("unused")
 internal class NeedsAdapter(
   private val needsItemTheme: NeedsItemTheme? = null
 ) : RecyclerView.Adapter<NeedsAdapter.NeedsViewHolder>() {
@@ -40,13 +39,7 @@ internal class NeedsAdapter(
   }
 
   override fun onBindViewHolder(holder: NeedsViewHolder, position: Int) {
-    val needsItem = this.needsItemList[position]
-    holder.bind(needsItem)
-  }
-
-  fun addItem(needsItem: NeedsItem) {
-    this.needsItemList.add(needsItem)
-    notifyDataSetChanged()
+    holder.bind(needsItemList[position])
   }
 
   fun addItemList(needsItems: List<NeedsItem>) {
