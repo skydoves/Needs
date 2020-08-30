@@ -34,7 +34,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -277,7 +276,7 @@ class Needs(
 
     @ColorInt
     @JvmField
-    var confirmBackgroundColor: Int = ContextCompat.getColor(context, R.color.colorPrimary)
+    var confirmBackgroundColor: Int = context.accentColor()
 
     @JvmField
     var confirm: CharSequence = "Confirm"

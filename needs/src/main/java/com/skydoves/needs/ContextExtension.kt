@@ -19,6 +19,8 @@ package com.skydoves.needs
 import android.content.Context
 import android.graphics.Point
 import android.graphics.drawable.Drawable
+import android.os.Build
+import android.util.TypedValue
 import android.view.WindowManager
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -59,4 +61,16 @@ internal fun Context.contextDrawable(@DrawableRes resource: Int): Drawable? {
 /** gets a string from resource. */
 internal fun Context.contextString(@StringRes resource: Int): String {
   return this.getString(resource)
+}
+
+/** gets an accent color. */
+internal fun Context.accentColor(): Int {
+  val colorAttr: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    R.attr.colorAccent
+  } else {
+    resources.getIdentifier("colorAccent", "attr", packageName)
+  }
+  val outValue = TypedValue()
+  theme.resolveAttribute(colorAttr, outValue, true)
+  return outValue.data
 }

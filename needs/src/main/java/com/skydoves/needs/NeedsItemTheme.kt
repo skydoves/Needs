@@ -61,7 +61,7 @@ class NeedsItemTheme(builder: Builder) {
 
     @JvmField
     var requireTextForm = textForm {
-      textColor = ContextCompat.getColor(context, R.color.colorPrimary)
+      textColor = context.accentColor()
       textSize = 16
       textStyle = Typeface.NORMAL
     }
