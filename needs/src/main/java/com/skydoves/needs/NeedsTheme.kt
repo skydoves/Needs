@@ -26,9 +26,11 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
 @DslMarker
-annotation class NeedsThemeDsl
+internal annotation class NeedsThemeDsl
 
 /** creates an instance of [NeedsTheme] by [NeedsTheme.Builder] using kotlin dsl. */
+@JvmSynthetic
+@NeedsThemeDsl
 fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsTheme =
   NeedsTheme.Builder(context).apply(block).build()
 

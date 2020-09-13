@@ -24,9 +24,11 @@ import androidx.annotation.ColorInt
 import com.skydoves.needs.annotations.Sp
 
 @DslMarker
-annotation class TextFormDsl
+internal annotation class TextFormDsl
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
+@JvmSynthetic
+@TextFormDsl
 fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder().apply(block).build()
 

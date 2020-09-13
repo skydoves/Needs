@@ -55,19 +55,19 @@ internal class NeedsAdapter(
   ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(needsItem: NeedsItem) {
-      itemView.run {
+      with(binding) {
         needsItem.icon?.let {
-          binding.itemNeedsImage.visible(true)
-          binding.itemNeedsImage.setImageDrawable(it)
-        } ?: let { binding.itemNeedsImage.visible(false) }
-        binding.itemNeedsTitle.text = needsItem.title
-        binding.itemNeedsRequire.text = needsItem.require
-        binding.itemNeedsDescription.text = needsItem.description
+          itemNeedsImage.visible(true)
+          itemNeedsImage.setImageDrawable(it)
+        } ?: let { itemNeedsImage.visible(false) }
+        itemNeedsTitle.text = needsItem.title
+        itemNeedsRequire.text = needsItem.require
+        itemNeedsDescription.text = needsItem.description
         applyBulletOnText(binding.itemNeedsTitle)
         needsItemTheme?.let {
-          binding.itemNeedsTitle.applyTextForm(it.titleTextForm)
-          binding.itemNeedsRequire.applyTextForm(it.requireTextForm)
-          binding.itemNeedsDescription.applyTextForm(it.descriptionTextForm)
+          itemNeedsTitle.applyTextForm(it.titleTextForm)
+          itemNeedsRequire.applyTextForm(it.requireTextForm)
+          itemNeedsDescription.applyTextForm(it.descriptionTextForm)
         }
       }
     }

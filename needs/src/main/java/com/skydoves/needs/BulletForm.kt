@@ -32,9 +32,11 @@ import androidx.core.content.res.ResourcesCompat
 import com.skydoves.needs.annotations.Dp
 
 @DslMarker
-annotation class BulletFormDsl
+internal annotation class BulletFormDsl
 
 /** creates an instance of [BulletForm] from [BulletForm.Builder] using kotlin dsl. */
+@JvmSynthetic
+@BulletFormDsl
 fun bulletForm(context: Context, block: BulletForm.Builder.() -> Unit): BulletForm =
   BulletForm.Builder(context).apply(block).build()
 

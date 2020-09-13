@@ -18,7 +18,6 @@
 
 package com.skydoves.needs
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -53,7 +52,6 @@ fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
 
 /** Needs implements showing and dismissing popup with background, animations. */
 @Suppress("MemberVisibilityCanBePrivate")
-@SuppressLint("InflateParams")
 class Needs(
   private val context: Context,
   private val builder: Builder
