@@ -57,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingTop="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_needs" />
@@ -96,6 +97,9 @@
         android:textSize="18sp"
         app:fontFamily="sans-serif"
         tools:text="confirm" />
+
     </LinearLayout>
+
   </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>
