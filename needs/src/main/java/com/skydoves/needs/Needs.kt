@@ -43,10 +43,11 @@ import com.skydoves.needs.databinding.LayoutBackgroundBinding
 import com.skydoves.needs.databinding.LayoutBodyBinding
 
 @DslMarker
-annotation class NeedsDsl
+internal annotation class NeedsDsl
 
 /** creates an instance of [Needs] by [Needs.Builder] using kotlin dsl. */
 @NeedsDsl
+@JvmSynthetic
 fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
   Needs.Builder(context).apply(block).build()
 
@@ -211,6 +212,7 @@ class Needs(
     this.bodyView.confirm.setOnClickListener { onConfirmListener.onConfirm() }
   }
 
+  @JvmSynthetic
   fun setOnConfirmListener(block: () -> Unit) {
     setOnConfirmListener(OnConfirmListener { block() })
   }
@@ -413,6 +415,7 @@ class Needs(
       this.onConfirmListener = value
     }
 
+    @JvmSynthetic
     fun setOnConfirmListener(block: () -> Unit): Builder = apply {
       setOnConfirmListener(OnConfirmListener { block() })
     }
