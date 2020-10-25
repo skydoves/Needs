@@ -256,45 +256,58 @@ class Needs(
   @NeedsDsl
   class Builder(private val context: Context) {
     @JvmField
+    @set:JvmSynthetic
     var titleIcon: Drawable? = null
 
     @JvmField
+    @set:JvmSynthetic
     var title: CharSequence = "Title"
 
     @JvmField
+    @set:JvmSynthetic
     var titleTextForm: TextForm? = null
 
     @JvmField
+    @set:JvmSynthetic
     var description: CharSequence = "description"
 
     @JvmField
+    @set:JvmSynthetic
     var descriptionTextForm: TextForm? = null
 
     @ColorInt
     @JvmField
+    @set:JvmSynthetic
     var confirmBackgroundColor: Int = context.accentColor()
 
     @JvmField
+    @set:JvmSynthetic
     var confirm: CharSequence = "Confirm"
 
     @JvmField
+    @set:JvmSynthetic
     var confirmTextForm: TextForm? = null
 
     @JvmField
+    @set:JvmSynthetic
     var onConfirmListener: OnConfirmListener? = null
 
     @JvmField
+    @set:JvmSynthetic
     var confirmVisible: Boolean = true
 
     @Dp
     @JvmField
+    @set:JvmSynthetic
     var padding: Int = 20
 
     @JvmField
+    @set:JvmSynthetic
     var listAdapter: RecyclerView.Adapter<*>? = null
 
     @Dp
     @JvmField
+    @set:JvmSynthetic
     var listHeight: Int = 240
 
     @JvmField
@@ -302,45 +315,58 @@ class Needs(
 
     @ColorInt
     @JvmField
+    @set:JvmSynthetic
     var dividerColor: Int = Color.parseColor("#ededed")
 
     @JvmField
+    @set:JvmSynthetic
     var dividerVisible: Boolean = true
 
     @Dp
     @JvmField
+    @set:JvmSynthetic
     var dividerHeight: Float = 0.8f
 
     @JvmField
+    @set:JvmSynthetic
     var background: Drawable? = null
 
     @ColorInt
     @JvmField
+    @set:JvmSynthetic
     var backgroundColor: Int = Color.BLACK
 
     @FloatRange(from = 0.0, to = 1.0)
     @JvmField
+    @set:JvmSynthetic
     var backgroundAlpha: Float = 0.6f
 
     @JvmField
+    @set:JvmSynthetic
     var lifecycleOwner: LifecycleOwner? = null
 
     @JvmField
+    @set:JvmSynthetic
     var needsTheme: NeedsTheme? = null
 
     @JvmField
+    @set:JvmSynthetic
     var needsItemTheme: NeedsItemTheme? = null
 
     @JvmField
+    @set:JvmSynthetic
     var needsAnimation: NeedsAnimation = NeedsAnimation.NONE
 
     @JvmField
+    @set:JvmSynthetic
     var preferenceName: String? = null
 
     @JvmField
+    @set:JvmSynthetic
     var showTimes: Int = 1
 
     @JvmField
+    @set:JvmSynthetic
     var backgroundSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 
     fun setTitleIcon(drawable: Drawable?): Builder = apply { this.titleIcon = drawable }

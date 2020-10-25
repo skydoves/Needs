@@ -47,14 +47,17 @@ class NeedsItemTheme(builder: Builder) {
   /** Builder class for creating [NeedsItemTheme]. */
   @NeedsItemThemeDsl
   class Builder(val context: Context) {
-    @JvmField
     @ColorInt
+    @JvmField
+    @set:JvmSynthetic
     var backgroundColor = Color.WHITE
 
     @JvmField
+    @set:JvmSynthetic
     var bulletForm: BulletForm? = null
 
     @JvmField
+    @set:JvmSynthetic
     var titleTextForm = textForm {
       textColor = Color.parseColor("#333333")
       textSize = 16
@@ -62,6 +65,7 @@ class NeedsItemTheme(builder: Builder) {
     }
 
     @JvmField
+    @set:JvmSynthetic
     var requireTextForm = textForm {
       textColor = context.accentColor()
       textSize = 16
@@ -69,6 +73,7 @@ class NeedsItemTheme(builder: Builder) {
     }
 
     @JvmField
+    @set:JvmSynthetic
     var descriptionTextForm = textForm {
       textColor = Color.parseColor("#FAFAFA")
       textSize = 12

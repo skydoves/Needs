@@ -27,8 +27,8 @@ import com.skydoves.needs.annotations.Sp
 internal annotation class TextFormDsl
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
-@JvmSynthetic
 @TextFormDsl
+@JvmSynthetic
 fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder().apply(block).build()
 
@@ -48,13 +48,16 @@ class TextForm(builder: Builder) {
   class Builder {
     @Sp
     @JvmField
+    @set:JvmSynthetic
     var textSize = 14
 
     @JvmField
     @ColorInt
+    @set:JvmSynthetic
     var textColor = Color.WHITE
 
     @JvmField
+    @set:JvmSynthetic
     var textStyle = Typeface.NORMAL
 
     fun setTextSize(@Sp value: Int): Builder = apply { this.textSize = value }

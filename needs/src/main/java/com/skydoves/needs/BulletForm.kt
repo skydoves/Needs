@@ -56,16 +56,20 @@ class BulletForm(builder: Builder) {
   class Builder(private val context: Context) {
     @Px
     @JvmField
+    @set:JvmSynthetic
     var bulletSize: Int = context.dp2Px(4)
 
     @JvmField
+    @set:JvmSynthetic
     var bulletColor: Int = Color.GRAY
 
     @Dp
     @JvmField
+    @set:JvmSynthetic
     var bulletPadding: Int = context.dp2Px(6)
 
     @JvmField
+    @set:JvmSynthetic
     var bulletDrawable: Drawable? = GradientDrawable().apply {
       cornerRadius = 100f
       setColor(bulletColor)

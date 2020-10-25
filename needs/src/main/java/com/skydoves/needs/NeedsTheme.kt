@@ -48,9 +48,11 @@ class NeedsTheme(builder: Builder) {
   class Builder(val context: Context) {
     @JvmField
     @ColorInt
+    @set:JvmSynthetic
     var backgroundColor = Color.WHITE
 
     @JvmField
+    @set:JvmSynthetic
     var titleTextForm = textForm {
       textColor = Color.parseColor("#333333")
       textSize = 18
@@ -58,6 +60,7 @@ class NeedsTheme(builder: Builder) {
     }
 
     @JvmField
+    @set:JvmSynthetic
     var descriptionTextForm = textForm {
       textColor = Color.parseColor("#FAFAFA")
       textSize = 12
@@ -65,6 +68,7 @@ class NeedsTheme(builder: Builder) {
     }
 
     @JvmField
+    @set:JvmSynthetic
     var confirmTextForm = textForm {
       textColor = Color.WHITE
       textSize = 18
