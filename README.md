@@ -13,6 +13,7 @@ Needs can be fully customized and showing with animations. <br>
 
 ## Download
 [![Download](https://api.bintray.com/packages/devmagician/maven/needs/images/download.svg)](https://bintray.com/devmagician/maven/needs/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/needs.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22needs%22)
 [![JitPack](https://jitpack.io/v/skydoves/Needs.svg)](https://jitpack.io/#skydoves/Needs)
 
 ### Gradle
