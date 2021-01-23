@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.skydoves.needs.databinding.ItemNeedsBinding
+import com.skydoves.needs.databinding.NeedsLibraryItemNeedsBinding
 
 /** NeedsAdapter is an implementation of [RecyclerView.Adapter] that has [NeedsItem] as items. */
 internal class NeedsAdapter(
@@ -34,7 +34,7 @@ internal class NeedsAdapter(
     viewType: Int
   ): NeedsViewHolder {
     val inflater = LayoutInflater.from(parent.context)
-    val binding = ItemNeedsBinding.inflate(inflater, parent, false)
+    val binding = NeedsLibraryItemNeedsBinding.inflate(inflater, parent, false)
     return NeedsViewHolder(binding, needsItemTheme)
   }
 
@@ -50,7 +50,7 @@ internal class NeedsAdapter(
   override fun getItemCount() = this.needsItemList.size
 
   class NeedsViewHolder(
-    private val binding: ItemNeedsBinding,
+    private val binding: NeedsLibraryItemNeedsBinding,
     private val needsItemTheme: NeedsItemTheme? = null
   ) : RecyclerView.ViewHolder(binding.root) {
 

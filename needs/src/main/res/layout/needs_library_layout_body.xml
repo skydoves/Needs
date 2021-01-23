@@ -60,7 +60,7 @@
         android:overScrollMode="never"
         android:paddingTop="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_needs" />
+        tools:listitem="@layout/needs_library_item_needs" />
 
       <FrameLayout
         android:id="@+id/divider_bottom"

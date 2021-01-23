@@ -39,8 +39,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.needs.annotations.Dp
-import com.skydoves.needs.databinding.LayoutBackgroundBinding
-import com.skydoves.needs.databinding.LayoutBodyBinding
+import com.skydoves.needs.databinding.NeedsLibraryLayoutBackgroundBinding
+import com.skydoves.needs.databinding.NeedsLibraryLayoutBodyBinding
 
 @DslMarker
 internal annotation class NeedsDsl
@@ -48,7 +48,7 @@ internal annotation class NeedsDsl
 /** creates an instance of [Needs] by [Needs.Builder] using kotlin dsl. */
 @NeedsDsl
 @JvmSynthetic
-fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
+inline fun createNeeds(context: Context, block: Needs.Builder.() -> Unit): Needs =
   Needs.Builder(context).apply(block).build()
 
 /** Needs implements showing and dismissing popup with background, animations. */
@@ -58,27 +58,29 @@ class Needs(
   private val builder: Builder
 ) : LifecycleObserver {
 
-  private val backgroundView: LayoutBackgroundBinding
+  private val backgroundView: NeedsLibraryLayoutBackgroundBinding
   private val backgroundWindow: PopupWindow
-  private val bodyView: LayoutBodyBinding
+  private val bodyView: NeedsLibraryLayoutBodyBinding
   private val bodyWindow: PopupWindow
   private lateinit var adapter: NeedsAdapter
-  private var onConfirmListener: OnConfirmListener? = null
   var isShowing: Boolean = false
     private set
+
+  private var onConfirmListener: OnConfirmListener? = null
+
   private var showTimes: Int = 1
   private var preferenceName: String? = null
   private val needsPreferenceManager = NeedsPreferenceManager.getInstance(context)
 
   init {
     val inflater = LayoutInflater.from(context)
-    this.backgroundView = LayoutBackgroundBinding.inflate(inflater, null, false)
+    this.backgroundView = NeedsLibraryLayoutBackgroundBinding.inflate(inflater, null, false)
     this.backgroundWindow = PopupWindow(
       backgroundView.root,
       FrameLayout.LayoutParams.MATCH_PARENT,
       FrameLayout.LayoutParams.MATCH_PARENT
     )
-    this.bodyView = LayoutBodyBinding.inflate(inflater, null, false)
+    this.bodyView = NeedsLibraryLayoutBodyBinding.inflate(inflater, null, false)
     this.bodyWindow = PopupWindow(
       bodyView.root,
       context.displaySize().x - context.dp2Px(builder.padding) * 2,
@@ -185,16 +187,16 @@ class Needs(
 
   private fun applyWindowAnimation() {
     when (this.builder.needsAnimation) {
-      NeedsAnimation.ELASTIC -> this.bodyWindow.animationStyle = R.style.Elastic
+      NeedsAnimation.ELASTIC -> this.bodyWindow.animationStyle = R.style.Needs_Library_Elastic
       NeedsAnimation.CIRCULAR -> {
         this.bodyWindow.contentView.circularRevealed()
-        this.bodyWindow.animationStyle = R.style.NormalDispose
+        this.bodyWindow.animationStyle = R.style.Needs_Library_NormalDispose
       }
       NeedsAnimation.FADE -> {
-        this.bodyWindow.animationStyle = R.style.Fade
-        this.backgroundWindow.animationStyle = R.style.Fade
+        this.bodyWindow.animationStyle = R.style.Needs_Library_Fade
+        this.backgroundWindow.animationStyle = R.style.Needs_Library_Fade
       }
-      else -> this.bodyWindow.animationStyle = R.style.Normal
+      else -> this.bodyWindow.animationStyle = R.style.Needs_Library_Normal
     }
   }
 
