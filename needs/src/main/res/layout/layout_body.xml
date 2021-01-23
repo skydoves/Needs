@@ -28,9 +28,9 @@
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_icon"
         android:visibility="gone"
         tools:ignore="ContentDescription"
+        tools:src="@tools:sample/avatars"
         tools:visibility="visible" />
 
       <androidx.appcompat.widget.AppCompatTextView
