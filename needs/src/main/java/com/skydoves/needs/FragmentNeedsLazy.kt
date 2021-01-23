@@ -18,6 +18,7 @@ package com.skydoves.needs
 
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
+import java.io.Serializable
 import kotlin.reflect.KClass
 
 /**
@@ -28,21 +29,21 @@ import kotlin.reflect.KClass
 class FragmentNeedsLazy<out T : Needs.Factory>(
   private val fragment: Fragment,
   private val clazz: KClass<T>
-) : Lazy<Needs?> {
+) : Lazy<Needs?>, Serializable {
 
   private var cached: Needs? = null
 
   override val value: Needs?
     get() {
       var instance = cached
-      if (instance == null && fragment.context != null) {
+      if (instance === null && fragment.context !== null) {
         val factory = clazz::java.get().newInstance()
-        val lifecycle = if (fragment.view != null) {
+        val lifecycle = if (fragment.view !== null) {
           fragment.viewLifecycleOwner
         } else {
           fragment
         }
-        instance = factory.create(fragment.requireContext(), lifecycle)
+        instance = factory.create(fragment.requireActivity(), lifecycle)
         cached = instance
       }
 
@@ -50,4 +51,6 @@ class FragmentNeedsLazy<out T : Needs.Factory>(
     }
 
   override fun isInitialized() = cached !== null
+
+  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }

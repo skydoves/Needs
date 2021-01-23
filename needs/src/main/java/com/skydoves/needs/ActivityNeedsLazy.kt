@@ -19,6 +19,7 @@ package com.skydoves.needs
 import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.LifecycleOwner
+import java.io.Serializable
 import kotlin.reflect.KClass
 
 /**
@@ -30,14 +31,14 @@ class ActivityNeedsLazy<out T : Needs.Factory>(
   private val context: Context,
   private val lifecycleOwner: LifecycleOwner,
   private val clazz: KClass<T>
-) : Lazy<Needs> {
+) : Lazy<Needs>, Serializable {
 
   private var cached: Needs? = null
 
   override val value: Needs
     get() {
       var instance = cached
-      if (instance == null) {
+      if (instance === null) {
         val factory = clazz::java.get().newInstance()
         instance = factory.create(context, lifecycleOwner)
         cached = instance
@@ -46,5 +47,7 @@ class ActivityNeedsLazy<out T : Needs.Factory>(
       return instance
     }
 
-  override fun isInitialized() = cached != null
+  override fun isInitialized() = cached !== null
+
+  override fun toString(): String = if (isInitialized()) value.toString() else "Lazy value not initialized yet."
 }
