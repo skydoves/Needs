@@ -225,7 +225,7 @@ We can initialize the needs property lazily using `needs` keyword and Needs.Fact
 The `needs` extension keyword can be used on Activity and Fragment.
 ```
 class MainActivity : AppCompatActivity() {
-  private val myNeeds by needs(DarkNeedsFactory::class)
+  private val myNeeds by needs<DarkNeedsFactory>()
   
   // ..
 }
