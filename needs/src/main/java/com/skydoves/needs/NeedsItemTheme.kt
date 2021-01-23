@@ -31,7 +31,7 @@ internal annotation class NeedsItemThemeDsl
 /** creates an instance of [NeedsItemTheme] by [NeedsItemTheme.Builder] using kotlin dsl. */
 @JvmSynthetic
 @NeedsItemThemeDsl
-fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): NeedsItemTheme =
+inline fun needsItemTheme(context: Context, block: NeedsItemTheme.Builder.() -> Unit): NeedsItemTheme =
   NeedsItemTheme.Builder(context).apply(block).build()
 
 /** NeedsItemTheme is an attribute class for changing item theme easily. */

@@ -29,7 +29,7 @@ internal annotation class TextFormDsl
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 @TextFormDsl
 @JvmSynthetic
-fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
+inline fun textForm(block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder().apply(block).build()
 
 /**
@@ -41,6 +41,8 @@ class TextForm(builder: Builder) {
 
   @Sp
   val textSize = builder.textSize
+
+  @ColorInt
   val textColor = builder.textColor
   val textStyle = builder.textStyle
 

@@ -31,7 +31,7 @@ internal annotation class NeedsThemeDsl
 /** creates an instance of [NeedsTheme] by [NeedsTheme.Builder] using kotlin dsl. */
 @JvmSynthetic
 @NeedsThemeDsl
-fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsTheme =
+inline fun needsTheme(context: Context, block: NeedsTheme.Builder.() -> Unit): NeedsTheme =
   NeedsTheme.Builder(context).apply(block).build()
 
 /** NeedsTheme is an attribute class for changing [Needs] popup theme easily. */
