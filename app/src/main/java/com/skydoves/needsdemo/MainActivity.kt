@@ -21,9 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.needs.Needs
 import com.skydoves.needs.needs
-import kotlinx.android.synthetic.main.activity_main.button0
-import kotlinx.android.synthetic.main.activity_main.button1
-import kotlinx.android.synthetic.main.activity_main.main
+import com.skydoves.needsdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,23 +30,28 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
 
-    needs1.setOnConfirmListener { needs1.dismiss() }
-    needs1.show(button0)
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    this.needs0 = DarkNeedsFactory().create(this, this)
+    with(binding) {
 
-    button0.setOnClickListener {
-      needs0 = NeedsUtils.getNeedsStyle0(this, this)
-      setOnConfirmListener()
-      needs0.show(main)
-    }
+      needs1.setOnConfirmListener { needs1.dismiss() }
+      needs1.show(button0)
 
-    button1.setOnClickListener {
-      needs0 = DarkNeedsFactory().create(this, this)
-      setOnConfirmListener()
-      needs0.show(main)
+      needs0 = DarkNeedsFactory().create(this@MainActivity, this@MainActivity)
+
+      button0.setOnClickListener {
+        needs0 = NeedsUtils.getNeedsStyle0(this@MainActivity, this@MainActivity)
+        setOnConfirmListener()
+        needs0.show(main)
+      }
+
+      button1.setOnClickListener {
+        needs0 = DarkNeedsFactory().create(this@MainActivity, this@MainActivity)
+        setOnConfirmListener()
+        needs0.show(main)
+      }
     }
   }
 
