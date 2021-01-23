@@ -19,7 +19,7 @@ package com.skydoves.needs
 import android.graphics.drawable.Drawable
 
 /** NeedsItem is an data class for composing [Needs] popup recyclerView item. */
-data class NeedsItem(
+data class NeedsItem @JvmOverloads constructor(
   val icon: Drawable? = null,
   val title: CharSequence = "",
   val require: CharSequence = "",

@@ -215,7 +215,7 @@ class Needs(
   }
 
   @JvmSynthetic
-  fun setOnConfirmListener(block: () -> Unit) {
+  inline fun setOnConfirmListener(crossinline block: () -> Unit) {
     setOnConfirmListener(OnConfirmListener { block() })
   }
 
