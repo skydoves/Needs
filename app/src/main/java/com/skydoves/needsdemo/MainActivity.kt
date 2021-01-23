@@ -26,7 +26,7 @@ import com.skydoves.needsdemo.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
   private lateinit var needs0: Needs
-  private val needs1 by needs(DarkNeedsFactory::class)
+  private val needs1 by needs<DarkNeedsFactory>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

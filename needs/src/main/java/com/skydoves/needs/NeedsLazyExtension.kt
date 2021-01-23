@@ -19,20 +19,15 @@ package com.skydoves.needs
 import androidx.activity.ComponentActivity
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
-import kotlin.reflect.KClass
 
 /** returns a [Lazy] delegate to access the [ComponentActivity]'s Needs property. */
 @MainThread
-inline fun <reified T : Needs.Factory> ComponentActivity.needs(
-  factory: KClass<T>
-): Lazy<Needs> {
-  return ActivityNeedsLazy(this, this, factory)
+inline fun <reified T : Needs.Factory> ComponentActivity.needs(): Lazy<Needs> {
+  return ActivityNeedsLazy(this, this, T::class)
 }
 
 /** returns a [Lazy] delegate to access the [Fragment]'s Needs property. */
 @MainThread
-inline fun <reified T : Needs.Factory> Fragment.needs(
-  factory: KClass<T>
-): Lazy<Needs?> {
-  return FragmentNeedsLazy(this, factory)
+inline fun <reified T : Needs.Factory> Fragment.needs(): Lazy<Needs?> {
+  return FragmentNeedsLazy(this, T::class)
 }

@@ -49,5 +49,5 @@ class FragmentNeedsLazy<out T : Needs.Factory>(
       return instance
     }
 
-  override fun isInitialized() = cached != null
+  override fun isInitialized() = cached !== null
 }
