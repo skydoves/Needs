@@ -12,7 +12,6 @@ Needs can be fully customized and showing with animations. <br>
 ![img1](https://user-images.githubusercontent.com/24237865/54251764-9ab78580-458b-11e9-86eb-794861fb9f75.png)
 
 ## Download
-[![Download](https://api.bintray.com/packages/devmagician/maven/needs/images/download.svg)](https://bintray.com/devmagician/maven/needs/_latestVersion)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/needs.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22needs%22)
 [![JitPack](https://jitpack.io/v/skydoves/Needs.svg)](https://jitpack.io/#skydoves/Needs)
 
