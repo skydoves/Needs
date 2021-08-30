@@ -42,7 +42,7 @@ Needs needs = new Needs.Builder(context)
       .addNeedsItem(new NeedsItem(null, "· Location", "(Required)", "Access this device's location."))
       .addNeedsItem(new NeedsItem(null, "· Camera", "(Optional)", "Take pictures and record video."))
       .addNeedsItem(new NeedsItem(null, "· Contact", "(Optional)", "Access this device's contacts."))
-      .addNeedsItem(new NeedsItem(null, "· SMS", "(Optional)", " end and view SMS messages."))
+      .addNeedsItem(new NeedsItem(null, "· SMS", "(Optional)", "Send and view SMS messages."))
       .setDescription("The above accesses are used to better serve you.")
       .setConfirm("Confirm")
       .setBackgroundAlpha(0.6f)
@@ -213,7 +213,7 @@ We can show and initialize Needs property more polish using extensions.
 
 #### showNeeds
 Shows the popup menu to the center. <br>
-It observes the target view's inflating and after inflate finished, show up on the target view.
+It observes the target view's inflating and after inflate finished, it show up on the target view.
 ```
 targetView.showNeeds(needs)
 ```
